@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <title>DTZ B1 Wortschatz & Verben</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body { font-family: Arial; max-width: 800px; margin: 0 auto; padding: 20px; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background: #f2f2f2; }
+        input { width: 100%; padding: 10px; margin: 10px 0; }
+        ul { list-style-type: none; padding: 0; }
+        li { background: #f9f9f9; margin: 5px 0; padding: 10px; border-left: 4px solid #007bff; }
+    </style>
+</head>
+<body>
+    <h1>🇩🇪 DTZ B1 Hören Vorbereitung</h1>
+    <p>Vokabeln & Verben aus Übungen #16-18. Teile mit Freunden!</p>
+
+    <input type="text" id="search" placeholder="Suche Wort/Verb..." onkeyup="filterTable()">
+
+    <h2>Wichtige Wörter</h2>
+    <table id="wordsTable">
+        <tr><th>Deutsch</th><th>Artikel</th><th>English</th></tr>
+        <tr><td>Ansage</td><td>die</td><td>announcement</td></tr>
+        <tr><td>Aufgabe</td><td>die</td><td>task</td></tr>
+        <!-- Füge hier deine volle Tabelle ein (kopiere aus vorher) -->
+    </table>
+
+    <h2>Verben</h2>
+    <ul id="verbsList">
+        <li>abgeben – hand in</li>
+        <li>arbeiten – work</li>
+        <!-- Füge alle Verben ein -->
+    </ul>
+
+    <script>
+        function filterTable() {
+            let input = document.getElementById("search").value.toLowerCase();
+            let table = document.getElementById("wordsTable");
+            let tr = table.getElementsByTagName("tr");
+            for (let i = 1; i < tr.length; i++) {
+                let td = tr[i].getElementsByTagName("td");
+                if (td) { tr[i].style.display = td.textContent.toLowerCase().indexOf(input) > -1 ? "" : "none"; }
+            }
+            // Filter für Verben-Liste ähnlich...
+        }
+    </script>
+</body>
+</html>
