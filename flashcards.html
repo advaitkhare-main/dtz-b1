@@ -1,0 +1,562 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <title>DTZ B1 Flashcards</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        :root {
+            --bg: #ffffff; --text: #333333; --card-bg: #f8f9fa;
+            --header-bg: #007bff; --header-text: white;
+        }
+        [data-theme="dark"] {
+            --bg: #121212; --text: #f0f0f0; --card-bg: #1e1e1e;
+            --header-bg: #1e40af;
+        }
+        body {
+            font-family: 'Segoe UI', sans-serif; max-width: 800px; 
+            margin: 0 auto; padding: 20px; background: var(--bg); 
+            color: var(--text); text-align: center;
+        }
+        .header { margin-bottom: 30px; }
+        .header h1 { color: var(--header-bg); }
+        
+        .selector {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px; margin: 30px 0;
+        }
+        .selector button {
+            padding: 30px 20px; font-size: 1.3rem; font-weight: bold;
+            background: var(--card-bg); color: var(--text);
+            border: 3px solid var(--header-bg); border-radius: 15px;
+            cursor: pointer; transition: all 0.3s;
+        }
+        .selector button:hover {
+            background: var(--header-bg); color: white; transform: scale(1.05);
+        }
+        
+        .flashcard-container { display: none; }
+        .scene {
+            width: 100%; height: 350px; perspective: 600px; margin: 20px 0;
+            cursor: pointer;
+        }
+        .card {
+            width: 100%; height: 100%; position: relative;
+            transition: transform 0.6s; transform-style: preserve-3d;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2); border-radius: 20px;
+        }
+        .card.is-flipped { transform: rotateY(180deg); }
+        .card__face {
+            position: absolute; width: 100%; height: 100%;
+            backface-visibility: hidden; display: flex;
+            align-items: center; justify-content: center; flex-direction: column;
+            font-size: 2rem; font-weight: bold; border-radius: 20px;
+            background: var(--card-bg); border: 3px solid var(--header-bg);
+            padding: 20px; box-sizing: border-box;
+        }
+        .card__face--back { 
+            transform: rotateY(180deg); 
+            background: var(--header-bg); 
+            color: white; 
+        }
+        
+        .controls {
+            display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;
+        }
+        .controls button {
+            padding: 15px 30px; font-size: 1.2rem;
+            background: var(--header-bg); color: white; border: none;
+            border-radius: 50px; cursor: pointer; font-weight: bold;
+        }
+        .back-btn { background: #6c757d !important; }
+        .progress { margin: 20px 0; font-size: 1.1rem; font-weight: bold; }
+        small { font-size: 0.7rem; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🃏 DTZ B1 Flashcards</h1>
+        <p>Wähle deinen Lernmodus</p>
+    </div>
+
+    <div class="selector" id="selector">
+        <button onclick="loadContent('words')">
+            📚 Nomen<br><small>273 Wörter</small>
+        </button>
+        <button onclick="loadContent('verbs')">
+            ⚡ Verben<br><small>76 Verben</small>
+        </button>
+        <button onclick="loadContent('custom')">
+            🎨 Eigene Karten<br><small>Eigenen Text eingeben</small>
+        </button>
+    </div>
+
+    <div class="flashcard-container" id="flashcardArea">
+        <div class="progress" id="progress">1 / 100</div>
+        
+        <div class="scene" onclick="flipCard()">
+            <div class="card" id="mainCard">
+                <div class="card__face card__face--front" id="front">Klicke Start</div>
+                <div class="card__face card__face--back" id="back">Klicke Start</div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button onclick="prevCard()">⬅️ Zurück</button>
+            <button onclick="nextCard()">Weiter ➡️</button>
+            <button onclick="shuffleDeck()">🔀 Mischen</button>
+            <button class="back-btn" onclick="backToSelector()">🏠 Menü</button>
+        </div>
+    </div>
+
+    <div id="customUpload" style="display:none; margin-top:30px;">
+        <h3>Eigene Flashcards erstellen</h3>
+        <textarea id="customText" placeholder="Format: Deutsch|English (eine pro Zeile)&#10;Beispiel:&#10;der Apfel|apple&#10;gehen|to go" 
+                  style="width:100%; height:150px; padding:10px; font-size:1rem;"></textarea>
+        <button onclick="loadCustomCards()" style="padding:10px 20px; margin-top:10px; background:#007bff; color:white; border:none; border-radius:5px; cursor:pointer;">Karten laden</button>
+    </div>
+
+    <a href="index.html" style="display:block; margin-top:30px; color:var(--text);">← Zurück zur Liste</a>
+
+    <script>
+        const wordsData = [
+        { front: "die Ansage", back: "announcement" },
+        { front: "die Aufgabe", back: "task" },
+        { front: "die Lösung", back: "solution" },
+        { front: "der Antwortbogen", back: "answer sheet" },
+        { front: "die Fahrgäste", back: "passengers" },
+        { front: "die U-Bahnlinie", back: "underground line" },
+        { front: "das Monatsticket", back: "monthly ticket" },
+        { front: "der Fahrer", back: "driver" },
+        { front: "die Buslinie", back: "bus line" },
+        { front: "das Ticket", back: "ticket" },
+        { front: "der Infopoint", back: "information desk" },
+        { front: "das Fundbüro", back: "lost property office" },
+        { front: "die Öffnungszeiten", back: "opening times" },
+        { front: "der Ausweis", back: "ID card" },
+        { front: "der Termin", back: "appointment" },
+        { front: "die Firma", back: "company" },
+        { front: "der Projektleiter", back: "project manager" },
+        { front: "die Dienstreise", back: "business trip" },
+        { front: "die Onlinebesprechung", back: "online meeting" },
+        { front: "die Praxis", back: "doctor's practice" },
+        { front: "das Seminar", back: "seminar" },
+        { front: "der Kundenservice", back: "customer service" },
+        { front: "die Energieversorgung", back: "energy supply" },
+        { front: "der Tarif", back: "tariff" },
+        { front: "die Webseite", back: "website" },
+        { front: "die Rechnung", back: "bill" },
+        { front: "der Zahlungsstatus", back: "payment status" },
+        { front: "die Kundennummer", back: "customer number" },
+        { front: "das technisches Problem", back: "technical problem" },
+        { front: "die Reparatur", back: "repair" },
+        { front: "der Zähler", back: "meter" },
+        { front: "der Mitarbeiter", back: "staff member" },
+        { front: "die Großveranstaltung", back: "major event" },
+        { front: "das Stadion", back: "stadium" },
+        { front: "die Straßenbahnlinie", back: "tram line" },
+        { front: "die Verbindung", back: "connection" },
+        { front: "die Verzögerung", back: "delay" },
+        { front: "das Verständnis", back: "understanding" },
+        { front: "der Wetterbericht", back: "weather report" },
+        { front: "der Regen", back: "rain" },
+        { front: "der Wind", back: "wind" },
+        { front: "die Temperatur", back: "temperature" },
+        { front: "der Schnee", back: "snow" },
+        { front: "die Sportsendung", back: "sports programme" },
+        { front: "das Kinderhörspiel", back: "children's radio play" },
+        { front: "das Konzert", back: "concert" },
+        { front: "die klassische Musik", back: "classical music" },
+        { front: "die Verkehrsmeldung", back: "traffic report" },
+        { front: "die Behinderung", back: "obstruction" },
+        { front: "das Verkehrsaufkommen", back: "traffic volume" },
+        { front: "der Zeitverlust", back: "time loss" },
+        { front: "der Gesundheitshinweis", back: "health notice" },
+        { front: "die Grippewelle", back: "flu wave" },
+        { front: "das Robert-Koch-Institut", back: "Robert Koch Institute" },
+        { front: "die STIKO", back: "standing vaccination committee" },
+        { front: "die Grippeschutzimpfung", back: "flu vaccination" },
+        { front: "der Hausarzt", back: "family doctor" },
+        { front: "die Bewegung", back: "exercise" },
+        { front: "die Armbeuge", back: "crook of the arm" },
+        { front: "die Schülerin", back: "female pupil" },
+        { front: "der Schulleiter", back: "head teacher" },
+        { front: "das Förderprogramm", back: "support programme" },
+        { front: "das Training", back: "training" },
+        { front: "der Wettkampf", back: "competition" },
+        { front: "das Sportevent", back: "sports event" },
+        { front: "die Zustimmung", back: "consent" },
+        { front: "die Eltern", back: "parents" },
+        { front: "das Krankengeld", back: "sickness benefit" },
+        { front: "das Formular", back: "form" },
+        { front: "die Unterschrift", back: "signature" },
+        { front: "die Familienversicherung", back: "family insurance" },
+        { front: "die Bescheinigung", back: "certificate" },
+        { front: "der Arbeitgeber", back: "employer" },
+        { front: "die Buchhaltung", back: "accounting" },
+        { front: "der Lebenslauf", back: "CV" },
+        { front: "die Festanstellung", back: "permanent position" },
+        { front: "der Sprachkurs", back: "language course" },
+        { front: "die Waschmaschine", back: "washing machine" },
+        { front: "das Lager", back: "warehouse" },
+        { front: "das Gerät", back: "device" },
+        { front: "die Lieferung", back: "delivery" },
+        { front: "die Technik", back: "technology" },
+        { front: "das Tablet", back: "tablet" },
+        { front: "das Schulbuch", back: "schoolbook" },
+        { front: "die Schultasche", back: "school bag" },
+        { front: "das Lernmaterial", back: "learning material" },
+        { front: "die Reisende", back: "traveller" },
+        { front: "der ICE", back: "high-speed train" },
+        { front: "der Zug", back: "train" },
+        { front: "das Bordbistro", back: "on-board bistro" },
+        { front: "der Wagen", back: "carriage" },
+        { front: "die Suppe", back: "soup" },
+        { front: "die Pasta", back: "pasta" },
+        { front: "die Option", back: "option" },
+        { front: "der Halt", back: "stop" },
+        { front: "der Aufenthalt", back: "stopover" },
+        { front: "die Bahnhofsbäckerei", back: "station bakery" },
+        { front: "die Brötchen", back: "bread roll" },
+        { front: "die Teilchen", back: "pastry" },
+        { front: "die Abfahrtszeit", back: "departure time" },
+        { front: "die Lampe", back: "lamp" },
+        { front: "der Flur", back: "hallway" },
+        { front: "der Heimweg", back: "way home" },
+        { front: "der Kuchen", back: "cake" },
+        { front: "die Bäckerei", back: "bakery" },
+        { front: "der Bus", back: "bus" },
+        { front: "die Tante", back: "aunt" },
+        { front: "der Einkauf", back: "shopping" },
+        { front: "das Blut", back: "blood" },
+        { front: "die Schilddrüsenwerte", back: "thyroid levels" },
+        { front: "das E-Rezept", back: "e-prescription" },
+        { front: "die Gesundheitskarte", back: "health card" },
+        { front: "die Apotheke", back: "pharmacy" },
+        { front: "das Medikament", back: "medicine" },
+        { front: "die Tablette", back: "pill" },
+        { front: "die Kontrolle", back: "check-up" },
+        { front: "die Wohngemeinschaft", back: "shared flat" },
+        { front: "das Homeoffice", back: "home office" },
+        { front: "das Budget", back: "budget" },
+        { front: "die Katzenallergie", back: "cat allergy" },
+        { front: "die U-Bahnanbindung", back: "underground connection" },
+        { front: "die Warmmiete", back: "rent incl. utilities" },
+        { front: "die Haltestelle", back: "bus stop" },
+        { front: "die Haustiere", back: "pets" },
+        { front: "die Ferienwohnung", back: "holiday apartment" },
+        { front: "das Apartment", back: "apartment" },
+        { front: "die Stornierung", back: "cancellation" },
+        { front: "die Endreinigung", back: "final cleaning" },
+        { front: "die Miete", back: "rent" },
+        { front: "das Flexicket", back: "flex ticket" },
+        { front: "der Aufenthaltstitel", back: "residence permit" },
+        { front: "das Jobangebot", back: "job offer" },
+        { front: "der Arbeitsvertrag", back: "employment contract" },
+        { front: "das Hochschuldiplom", back: "university degree" },
+        { front: "das Gehalt", back: "salary" },
+        { front: "die Fachkraft", back: "skilled worker" },
+        { front: "die Krankenversicherung", back: "health insurance" },
+        { front: "der Mietvertrag", back: "rental contract" },
+        { front: "der Geschirrspüler", back: "dishwasher" },
+        { front: "die Fehlerdiagnose", back: "fault diagnosis" },
+        { front: "die Ersatzpumpe", back: "replacement pump" },
+        { front: "die Arbeitszeit", back: "working time" },
+        { front: "die Anfahrt", back: "call-out fee" },
+        { front: "die Besprechung", back: "meeting" },
+        { front: "die Bibliothek", back: "library" },
+        { front: "das Gemeindehaus", back: "community hall" },
+        { front: "die Turnhalle", back: "gymnasium" },
+        { front: "die Stühle", back: "chairs" },
+        { front: "die Sitzmöglichkeiten", back: "seating" },
+        { front: "die Verabredung", back: "appointment" },
+        { front: "der Salat", back: "salad" },
+        { front: "der Geburtstag", back: "birthday" },
+        { front: "die Musikbox", back: "music box" },
+        { front: "die Anlage", back: "system" },
+        { front: "der Gemüsesalat", back: "vegetable salad" },
+        { front: "die Getränke", back: "drinks" },
+        { front: "der Garten", back: "garden" },
+        { front: "die Reise", back: "trip" },
+        { front: "die Verspätung", back: "delay" },
+        { front: "das Wasserwerk", back: "waterworks" },
+        { front: "die Proben", back: "samples" },
+        { front: "die Leitungen", back: "pipes" },
+        { front: "der Ersatzschlüssel", back: "spare key" },
+        { front: "die Zahnarztpraxis", back: "dentist's practice" },
+        { front: "die Sprechzeiten", back: "office hours" },
+        { front: "die Mittagspause", back: "lunch break" },
+        { front: "die Fortbildung", back: "training" },
+        { front: "der Notdienst", back: "emergency service" },
+        { front: "die Livesendung", back: "live broadcast" },
+        { front: "der Studiogast", back: "studio guest" },
+        { front: "die Reisetipps", back: "travel tips" },
+        { front: "die Literatursendung", back: "literature program" },
+        { front: "die Onlineartikel", back: "online articles" },
+        { front: "die Social-Media-Texte", back: "social media texts" },
+        { front: "die Podcasts", back: "podcasts" },
+        { front: "die Lesekultur", back: "reading culture" },
+        { front: "das Altstadtfest", back: "old town festival" },
+        { front: "die Fahrradbrücke", back: "bike bridge" },
+        { front: "der Verkehr", back: "traffic" },
+        { front: "die Innenstadt", back: "city center" },
+        { front: "die Regeln", back: "rules" },
+        { front: "die Unfälle", back: "accidents" },
+        { front: "die Schulertickets", back: "student tickets" },
+        { front: "die Sommerferien", back: "summer holidays" },
+        { front: "die Garantie", back: "warranty" },
+        { front: "der Supermarkt", back: "supermarket" },
+        { front: "die Wartungsarbeiten", back: "maintenance work" },
+        { front: "die Selbstbedienungskassen", back: "self-checkout" },
+        { front: "die Mitglieder", back: "members" },
+        { front: "der Tanzfitnesskurs", back: "dance fitness course" },
+        { front: "die Rezeption", back: "reception" },
+        { front: "das Theaterstück", back: "play (theater)" },
+        { front: "die Vorstellungen", back: "performances" },
+        { front: "die Freikarten", back: "free tickets" },
+        { front: "das Wissenschaftszentrum", back: "science center" },
+        { front: "die Raumfahrt", back: "space travel" },
+        { front: "die Künstliche Intelligenz", back: "artificial intelligence" },
+        { front: "das Gewitter", back: "thunderstorm" },
+        { front: "der Berufsverkehr", back: "rush hour traffic" },
+        { front: "das Gewinnspiel", back: "prize draw" },
+        { front: "der Gutschein", back: "voucher" },
+        { front: "der Kurzurlaub", back: "short trip" },
+        { front: "der Führerschein", back: "driver's license" },
+        { front: "die Theorieprüfung", back: "theory exam" },
+        { front: "der Seetest", back: "eye test" },
+        { front: "der Erste-Hilfe-Kurs", back: "first aid course" },
+        { front: "die Ausbildung", back: "vocational training" },
+        { front: "das Grafikdesign", back: "graphic design" },
+        { front: "der Realschulabschluss", back: "secondary school certificate" },
+        { front: "das Abitur", back: "high school diploma" },
+        { front: "die Berufsfachschule", back: "vocational school" },
+        { front: "die Pflege", back: "nursing/care" },
+        { front: "der Einzelhandel", back: "retail" },
+        { front: "die Logistik", back: "logistics" },
+        { front: "die Berufsinformationsmesse", back: "career fair" },
+        { front: "die Tierarztpraxis", back: "veterinary practice" },
+        { front: "der Impfpass", back: "vaccination record" },
+        { front: "die Futterprobe", back: "food sample" },
+        { front: "der Scanner", back: "scanner" },
+        { front: "das Sonderangebot", back: "special offer" },
+        { front: "das Marktteam", back: "market team" },
+        { front: "die Nachhilfe", back: "tutoring" },
+        { front: "die Schwierigkeiten", back: "difficulties" },
+        { front: "die Verbesserung", back: "improvement" },
+        { front: "der Lernplan", back: "study plan" },
+        { front: "die Karteikarten", back: "flashcards" },
+        { front: "die Erklärvideos", back: "explainer videos" },
+        { front: "die Belastung", back: "burden" },
+        { front: "die Lernhilfen", back: "learning aids" },
+        { front: "die Bildung", back: "education" },
+        { front: "die Unterschiede", back: "differences" },
+        { front: "die WG", back: "shared flat" },
+        { front: "der Auflauf", back: "casserole" },
+        { front: "der Ofen", back: "oven" },
+        { front: "die Verlobung", back: "engagement" },
+        { front: "der Ring", back: "ring" },
+        { front: "der Finderlohn", back: "reward" },
+        { front: "das Reh", back: "deer" },
+        { front: "die Fahrbahn", back: "roadway" },
+        { front: "die Straßensperrung", back: "road closure" },
+        { front: "das Glatteis", back: "black ice" },
+        { front: "der Bodenfrost", back: "ground frost" },
+        { front: "die Brücken", back: "bridges" },
+        { front: "die Nebenstraßen", back: "side roads" },
+        { front: "das Stadtmuseum", back: "city museum" },
+        { front: "die Halbzeit", back: "half-time" },
+        { front: "der Sieg", back: "victory" },
+        { front: "das Finale", back: "final" },
+        { front: "der Schreibtisch", back: "desk" },
+        { front: "das Arbeitszimmer", back: "study room" },
+        { front: "die Schubladen", back: "drawers" },
+        { front: "die Rückenlehne", back: "backrest" },
+        { front: "die Rückenschmerzen", back: "back pain" },
+        { front: "die Fahrradmitnahme", back: "bicycle transport" },
+        { front: "der Kinderwagen", back: "stroller" },
+        { front: "das Vorstellungsgespräch", back: "job interview" },
+        { front: "die Vollzeit", back: "full-time" },
+        { front: "die Teilzeit", back: "part-time" },
+        { front: "die Absagen", back: "rejections" },
+        { front: "der Abholschein", back: "pickup slip" },
+        { front: "die Vollmacht", back: "power of attorney" },
+        { front: "die Zustellung", back: "delivery" },
+        { front: "der Absender", back: "sender" },
+        { front: "die Ernährung", back: "nutrition" },
+        { front: "die Süßigkeiten", back: "sweets" },
+        { front: "die Limonade", back: "lemonade" },
+        { front: "die Kopfschmerzen", back: "headache" },
+        { front: "die Gerichte", back: "dishes/meals" },
+        { front: "die Linsen", back: "lentils" },
+        { front: "der Tofu", back: "tofu" },
+        { front: "die Fertiggerichte", back: "ready meals" },
+        { front: "das Salz", back: "salt" },
+        { front: "die Dose", back: "can" },
+    ];
+        const verbsData = [
+        { front: "abgeben", back: "hand in<br><small>ich gebe ab, du gibst ab, er/sie/es gibt ab</small>" },
+        { front: "abholen", back: "pick up<br><small>ich hole ab, du holst ab, er/sie/es holt ab</small>" },
+        { front: "absagen", back: "cancel<br><small>ich sage ab, du sagst ab, er/sie/es sagt ab</small>" },
+        { front: "arbeiten", back: "work<br><small>ich arbeite, du arbeitest, er/sie/es arbeitet</small>" },
+        { front: "aufbewahren", back: "store<br><small>ich bewahre auf, du bewahrst auf, er/sie/es bewahrt auf</small>" },
+        { front: "auftreten", back: "occur<br><small>ich trete auf, du trittst auf, er/sie/es tritt auf</small>" },
+        { front: "beantragen", back: "apply<br><small>ich beantrage, du beantragst, er/sie/es beantragt</small>" },
+        { front: "bedienen", back: "serve<br><small>ich bediene, du bedienst, er/sie/es bedient</small>" },
+        { front: "bestätigen", back: "confirm<br><small>ich bestätige, du bestätigst, er/sie/es bestätigt</small>" },
+        { front: "besichtigen", back: "view<br><small>ich besichtige, du besichtigst, er/sie/es besichtigt</small>" },
+        { front: "besorgen", back: "get<br><small>ich besorge, du besorgst, er/sie/es besorgt</small>" },
+        { front: "bilden", back: "form<br><small>ich bilde, du bildest, er/sie/es bildet</small>" },
+        { front: "bringen", back: "bring<br><small>ich bringe, du bringst, er/sie/es bringt</small>" },
+        { front: "buchen", back: "book<br><small>ich buche, du buchst, er/sie/es bucht</small>" },
+        { front: "fahren", back: "go/drive<br><small>ich fahre, du fährst, er/sie/es fährt</small>" },
+        { front: "finden", back: "find<br><small>ich finde, du findest, er/sie/es findet</small>" },
+        { front: "geben", back: "give<br><small>ich gebe, du gibst, er/sie/es gibt</small>" },
+        { front: "gehen", back: "go<br><small>ich gehe, du gehst, er/sie/es geht</small>" },
+        { front: "hören", back: "listen<br><small>ich höre, du hörst, er/sie/es hört</small>" },
+        { front: "impfen", back: "vaccinate<br><small>ich impfe, du impfst, er/sie/es impft</small>" },
+        { front: "machen", back: "do/make<br><small>ich mache, du machst, er/sie/es macht</small>" },
+        { front: "markieren", back: "mark<br><small>ich markiere, du markierst, er/sie/es markiert</small>" },
+        { front: "melden", back: "report<br><small>ich melde, du meldest, er/sie/es meldet</small>" },
+        { front: "nehmen", back: "take<br><small>ich nehme, du nimmst, er/sie/es nimmt</small>" },
+        { front: "passen", back: "fit<br><small>ich passe, du passt, er/sie/es passt</small>" },
+        { front: "planen", back: "plan<br><small>ich plane, du planst, er/sie/es plant</small>" },
+        { front: "pumpen", back: "pump<br><small>ich pumpe, du pumpst, er/sie/es pumpt</small>" },
+        { front: "prüfen", back: "check<br><small>ich prüfe, du prüfst, er/sie/es prüft</small>" },
+        { front: "rufen", back: "call<br><small>ich rufe, du rufst, er/sie/es ruft</small>" },
+        { front: "reinigen", back: "clean<br><small>ich reinige, du reinigst, er/sie/es reinigt</small>" },
+        { front: "reparieren", back: "repair<br><small>ich repariere, du reparierst, er/sie/es repariert</small>" },
+        { front: "reservieren", back: "reserve<br><small>ich reserviere, du reservierst, er/sie/es reserviert</small>" },
+        { front: "schicken", back: "send<br><small>ich schicke, du schickst, er/sie/es schickt</small>" },
+        { front: "schließen", back: "close<br><small>ich schließe, du schließt, er/sie/es schließt</small>" },
+        { front: "sprechen", back: "speak<br><small>ich spreche, du sprichst, er/sie/es spricht</small>" },
+        { front: "sperren", back: "block<br><small>ich sperre, du sperrst, er/sie/es sperrt</small>" },
+        { front: "suchen", back: "search<br><small>ich suche, du suchst, er/sie/es sucht</small>" },
+        { front: "stattfinden", back: "take place<br><small>ich finde statt, du findest statt, er/sie/es findet statt</small>" },
+        { front: "teilnehmen", back: "participate<br><small>ich nehme teil, du nimmst teil, er/sie/es nimmt teil</small>" },
+        { front: "tragen", back: "carry<br><small>ich trage, du trägst, er/sie/es trägt</small>" },
+        { front: "übertragen", back: "broadcast<br><small>ich übertrage, du überträgst, er/sie/es überträgt</small>" },
+        { front: "unterschreiben", back: "sign<br><small>ich unterschreibe, du unterschreibst, er/sie/es unterschreibt</small>" },
+        { front: "verbinden", back: "connect<br><small>ich verbinde, du verbindest, er/sie/es verbindet</small>" },
+        { front: "vereinbaren", back: "arrange<br><small>ich vereinbare, du vereinbarst, er/sie/es vereinbart</small>" },
+        { front: "verspäten", back: "be late<br><small>ich verspäte, du verspätest, er/sie/es verspätet</small>" },
+        { front: "wünschen", back: "wish<br><small>ich wünsche, du wünschst, er/sie/es wünscht</small>" },
+        { front: "warten", back: "wait<br><small>ich warte, du wartest, er/sie/es wartet</small>" },
+        { front: "waschen", back: "wash<br><small>ich wasche, du wäschst, er/sie/es wäscht</small>" },
+        { front: "erinnern", back: "remind<br><small>ich erinnere, du erinnerst, er/sie/es erinnert</small>" },
+        { front: "stattfinden", back: "take place<br><small>ich findet statt, du findest statt, er/sie/es findet statt</small>" },
+        { front: "renovieren", back: "renovate<br><small>ich renoviere, du renovierst, er/sie/es renoviert</small>" },
+        { front: "treffen", back: "meet<br><small>ich treffe, du triffst, er/sie/es trifft</small>" },
+        { front: "bringen", back: "bring<br><small>ich bringe, du bringst, er/sie/es bringt</small>" },
+        { front: "kommen", back: "come<br><small>ich komme, du kommst, er/sie/es kommt</small>" },
+        { front: "machen", back: "make<br><small>ich mache, du machst, er/sie/es macht</small>" },
+        { front: "verpacken", back: "wrap<br><small>ich verpacke, du verpackst, er/sie/es verpackt</small>" },
+        { front: "legen", back: "put<br><small>ich lege, du legst, er/sie/es legt</small>" },
+        { front: "rufen", back: "call<br><small>ich rufe, du rufst, er/sie/es ruft</small>" },
+        { front: "lassen", back: "let<br><small>ich lasse, du lässt, er/sie/es lässt</small>" },
+        { front: "kombinieren", back: "combine<br><small>ich kombiniere, du kombinierst, er/sie/es kombiniert</small>" },
+        { front: "verstauchen", back: "sprain<br><small>ich verstauche, du verstauchst, er/sie/es verstaucht</small>" },
+        { front: "verschieben", back: "postpone<br><small>ich verschiebe, du verschiebst, er/sie/es verschiebt</small>" },
+        { front: "bekanntgeben", back: "announce<br><small>ich gebe bekannt, du gibst bekannt, er/sie/es gibt bekannt</small>" },
+        { front: "rechnen", back: "expect<br><small>ich rechne, du rechnest, er/sie/es rechnet</small>" },
+        { front: "gewinnen", back: "win<br><small>ich gewinne, du gewinnst, er/sie/es gewinnt</small>" },
+        { front: "umtauschen", back: "exchange<br><small>ich tausche um, du tauschst um, er/sie/es tauscht um</small>" },
+        { front: "entfallen", back: "be cancelled/omitted<br><small>ich entfalle, du entfällst, er/sie/es entfällt</small>" },
+        { front: "bewerben", back: "apply<br><small>ich bewerbe, du bewirbst, er/sie/es bewirbt</small>" },
+        { front: "einspringen", back: "step in<br><small>ich springe ein, du springst ein, er/sie/es springt ein</small>" },
+        { front: "bemerken", back: "notice<br><small>ich bemerke, du bemerkst, er/sie/es bemerkt</small>" },
+        { front: "erbrechen", back: "vomit<br><small>ich erbreche, du erbrichst, er/sie/es erbricht</small>" },
+        { front: "einschieben", back: "squeeze in<br><small>ich schiebe ein, du schiebst ein, er/sie/es schiebt ein</small>" },
+        { front: "verreisen", back: "go on a trip<br><small>ich verreise, du verreist, er/sie/es verreist</small>" },
+        { front: "erstatten", back: "refund<br><small>ich erstatte, du erstattest, er/sie/es erstattet</small>" },
+        { front: "verzichten", back: "do without<br><small>ich verzichte, du verzichtest, er/sie/es verzichtet</small>" },
+        { front: "aufpassen", back: "watch out<br><small>ich passe auf, du passt auf, er/sie/es passt auf</small>" },
+    ];
+        let currentDeck = [];
+        let currentIndex = 0;
+
+        const card = document.getElementById('mainCard');
+        const front = document.getElementById('front');
+        const back = document.getElementById('back');
+        const progress = document.getElementById('progress');
+
+        function loadContent(type) {
+            document.getElementById('selector').style.display = 'none';
+            document.getElementById('flashcardArea').style.display = 'block';
+            document.getElementById('customUpload').style.display = 'none';
+            
+            if (type === 'words') {
+                currentDeck = [...wordsData];
+            } else if (type === 'verbs') {
+                currentDeck = [...verbsData];
+            } else if (type === 'custom') {
+                document.getElementById('selector').style.display = 'none';
+                document.getElementById('flashcardArea').style.display = 'none';
+                document.getElementById('customUpload').style.display = 'block';
+                return;
+            }
+            
+            shuffleDeck();
+        }
+
+        function loadCustomCards() {
+            const text = document.getElementById('customText').value;
+            const lines = text.split('\n').filter(l => l.trim());
+            
+            currentDeck = lines.map(line => {
+                const [front, back] = line.split('|');
+                return { front: front?.trim() || '?', back: back?.trim() || '?' };
+            });
+            
+            if (currentDeck.length === 0) {
+                alert('Bitte Karten eingeben!');
+                return;
+            }
+            
+            document.getElementById('customUpload').style.display = 'none';
+            document.getElementById('flashcardArea').style.display = 'block';
+            updateCard();
+        }
+
+        function updateCard() {
+            card.classList.remove('is-flipped');
+            setTimeout(() => {
+                front.innerHTML = currentDeck[currentIndex].front;
+                back.innerHTML = currentDeck[currentIndex].back;
+                progress.textContent = `${currentIndex + 1} / ${currentDeck.length}`;
+            }, 200);
+        }
+
+        function flipCard() {
+            card.classList.toggle('is-flipped');
+        }
+
+        function nextCard() {
+            currentIndex = (currentIndex + 1) % currentDeck.length;
+            updateCard();
+        }
+
+        function prevCard() {
+            currentIndex = (currentIndex - 1 + currentDeck.length) % currentDeck.length;
+            updateCard();
+        }
+
+        function shuffleDeck() {
+            for (let i = currentDeck.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [currentDeck[i], currentDeck[j]] = [currentDeck[j], currentDeck[i]];
+            }
+            currentIndex = 0;
+            updateCard();
+        }
+
+        function backToSelector() {
+            document.getElementById('selector').style.display = 'grid';
+            document.getElementById('flashcardArea').style.display = 'none';
+            document.getElementById('customUpload').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
+    

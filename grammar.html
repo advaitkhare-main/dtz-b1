@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="dark">
+<head>
+    <title>DTZ B1 Grammatik Referenz</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        :root {
+            --bg: #ffffff; --text: #333333; --card-bg: #f8f9fa;
+            --header-bg: #007bff; --border: #dee2e6; --table-bg: white;
+        }
+        [data-theme="dark"] {
+            --bg: #0d1117; --text: #e6edf3; --card-bg: #161b22;
+            --header-bg: #1f6feb; --border: #30363d; --table-bg: #0d1117;
+        }
+        * { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            max-width: 1400px; margin: 0 auto; padding: 20px;
+            background: var(--bg); color: var(--text);
+            transition: background 0.3s, color 0.3s;
+        }
+        .header {
+            text-align: center; padding: 30px;
+            background: var(--card-bg); border-radius: 15px;
+            margin-bottom: 30px; border: 1px solid var(--border);
+        }
+        .header h1 { color: var(--header-bg); margin: 0 0 10px 0; }
+        .nav-links {
+            display: flex; gap: 15px; justify-content: center;
+            margin: 20px 0; flex-wrap: wrap;
+        }
+        .nav-links a {
+            padding: 10px 20px; background: var(--header-bg);
+            color: white; text-decoration: none; border-radius: 8px;
+            font-weight: 600; transition: all 0.3s;
+        }
+        .nav-links a:hover { opacity: 0.85; transform: translateY(-2px); }
+
+        .jump-links {
+            display: flex; gap: 10px; justify-content: center;
+            margin: 25px 0; flex-wrap: wrap; padding: 20px;
+            background: var(--card-bg); border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+        .jump-links a {
+            padding: 8px 16px; background: var(--header-bg);
+            color: white; text-decoration: none; border-radius: 6px;
+            font-size: 14px; transition: all 0.2s;
+        }
+        .jump-links a:hover { opacity: 0.8; }
+
+        .category {
+            margin: 40px 0; padding: 25px;
+            background: var(--card-bg); border-radius: 12px;
+            border-left: 5px solid var(--header-bg);
+            border: 1px solid var(--border);
+            scroll-margin-top: 20px;
+        }
+        .category h2 { 
+            color: var(--header-bg); margin-top: 0; 
+            font-size: 1.8em; margin-bottom: 20px;
+        }
+        table {
+            width: 100%; border-collapse: collapse;
+            margin: 20px 0; background: var(--table-bg);
+            border-radius: 8px; overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        th {
+            background: var(--header-bg); color: white;
+            padding: 14px 12px; text-align: left; font-weight: 600;
+            font-size: 14px;
+        }
+        td {
+            padding: 12px; border-bottom: 1px solid var(--border);
+            font-size: 14px;
+        }
+        tr:last-child td { border-bottom: none; }
+        tr:hover { background: rgba(31, 111, 235, 0.1); }
+        td:first-child { font-weight: 600; color: var(--header-bg); }
+        td:last-child { color: #8b949e; font-style: italic; }
+
+        .theme-toggle {
+            position: fixed; top: 20px; right: 20px;
+            background: var(--header-bg); color: white;
+            border: none; padding: 10px 15px; border-radius: 8px;
+            cursor: pointer; font-size: 18px; z-index: 1000;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 15px; }
+            .header { padding: 20px; }
+            .category { padding: 15px; }
+            table { font-size: 13px; }
+            td, th { padding: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">🌓</button>
+
+    <div class="header">
+        <h1>📚 DTZ B1 Grammatik Referenz</h1>
+        <p style="margin: 10px 0 20px 0; font-size: 16px;">183 wichtige Grammatikwörter mit Beispielsätzen</p>
+        <div class="nav-links">
+            <a href="index.html">📖 Wortliste</a>
+            <a href="flashcards.html">🃏 Flashcards</a>
+        </div>
+    </div>
+
+    <div class="jump-links">
+        <strong style="margin-right: 10px; align-self: center;">Schnellzugriff:</strong>
+        <a href="#pronouns">👤 Pronomen</a>
+        <a href="#conjunctions">🔗 Konjunktionen</a>
+        <a href="#prepositions">📍 Präpositionen</a>
+        <a href="#adverbs">🕐 Adverbien</a>
+        <a href="#adjectives">✨ Adjektive</a>
+    </div>
+
+    <div class="category" id="pronouns">
+        <h2>👤 Pronomen (Pronouns) - 33 Wörter</h2>
+        <table>
+            <thead>
+                <tr><th>Deutsch</th><th>English</th><th>Typ</th><th>Beispielsatz</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>ich</td><td>I</td><td>Personalpronomen - Nominativ</td><td>Ich lerne Deutsch.</td></tr><tr><td>du</td><td>you (informal)</td><td>Personalpronomen - Nominativ</td><td>Du bist nett.</td></tr><tr><td>er</td><td>he</td><td>Personalpronomen - Nominativ</td><td>Er arbeitet hier.</td></tr><tr><td>sie</td><td>she</td><td>Personalpronomen - Nominativ</td><td>Sie kommt morgen.</td></tr><tr><td>es</td><td>it</td><td>Personalpronomen - Nominativ</td><td>Es regnet heute.</td></tr><tr><td>wir</td><td>we</td><td>Personalpronomen - Nominativ</td><td>Wir gehen zusammen.</td></tr><tr><td>ihr</td><td>you (plural)</td><td>Personalpronomen - Nominativ</td><td>Ihr seid spät.</td></tr><tr><td>sie</td><td>they</td><td>Personalpronomen - Nominativ</td><td>Sie lernen Deutsch.</td></tr><tr><td>Sie</td><td>you (formal)</td><td>Personalpronomen - Nominativ</td><td>Wo wohnen Sie?</td></tr><tr><td>mich</td><td>me</td><td>Personalpronomen - Akkusativ</td><td>Er sieht mich.</td></tr><tr><td>dich</td><td>you</td><td>Personalpronomen - Akkusativ</td><td>Ich liebe dich.</td></tr><tr><td>ihn</td><td>him</td><td>Personalpronomen - Akkusativ</td><td>Ich kenne ihn.</td></tr><tr><td>sie</td><td>her</td><td>Personalpronomen - Akkusativ</td><td>Wir besuchen sie.</td></tr><tr><td>uns</td><td>us</td><td>Personalpronomen - Akkusativ</td><td>Sie hören uns.</td></tr><tr><td>euch</td><td>you (plural)</td><td>Personalpronomen - Akkusativ</td><td>Ich sehe euch.</td></tr><tr><td>mir</td><td>to me</td><td>Personalpronomen - Dativ</td><td>Er hilft mir.</td></tr><tr><td>dir</td><td>to you</td><td>Personalpronomen - Dativ</td><td>Ich gebe dir das Buch.</td></tr><tr><td>ihm</td><td>to him</td><td>Personalpronomen - Dativ</td><td>Sie gibt ihm Geld.</td></tr><tr><td>ihr</td><td>to her</td><td>Personalpronomen - Dativ</td><td>Wir helfen ihr.</td></tr><tr><td>uns</td><td>to us</td><td>Personalpronomen - Dativ</td><td>Das gefällt uns.</td></tr><tr><td>ihnen</td><td>to them</td><td>Personalpronomen - Dativ</td><td>Ich zeige ihnen den Weg.</td></tr><tr><td>mein</td><td>my</td><td>Possessivpronomen</td><td>Das ist mein Haus.</td></tr><tr><td>dein</td><td>your</td><td>Possessivpronomen</td><td>Wo ist dein Auto?</td></tr><tr><td>sein</td><td>his/its</td><td>Possessivpronomen</td><td>Das ist sein Buch.</td></tr><tr><td>ihr</td><td>her</td><td>Possessivpronomen</td><td>Wo ist ihr Handy?</td></tr><tr><td>unser</td><td>our</td><td>Possessivpronomen</td><td>Das ist unser Garten.</td></tr><tr><td>euer</td><td>your (plural)</td><td>Possessivpronomen</td><td>Ist das euer Hund?</td></tr><tr><td>dieser</td><td>this</td><td>Demonstrativpronomen</td><td>Dieser Mann ist nett.</td></tr><tr><td>jener</td><td>that</td><td>Demonstrativpronomen</td><td>Jenes Haus ist alt.</td></tr><tr><td>wer</td><td>who</td><td>Fragepronomen</td><td>Wer kommt heute?</td></tr><tr><td>wen</td><td>whom</td><td>Fragepronomen</td><td>Wen siehst du?</td></tr><tr><td>wem</td><td>to whom</td><td>Fragepronomen</td><td>Wem gehört das?</td></tr><tr><td>was</td><td>what</td><td>Fragepronomen</td><td>Was machst du?</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="category" id="conjunctions">
+        <h2>🔗 Konjunktionen (Conjunctions) - 19 Wörter</h2>
+        <table>
+            <thead>
+                <tr><th>Deutsch</th><th>English</th><th>Typ</th><th>Beispielsatz</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>und</td><td>and</td><td>Koordinierend</td><td>Ich esse Brot und Käse.</td></tr><tr><td>oder</td><td>or</td><td>Koordinierend</td><td>Tee oder Kaffee?</td></tr><tr><td>aber</td><td>but</td><td>Koordinierend</td><td>Ich bin müde, aber glücklich.</td></tr><tr><td>denn</td><td>because</td><td>Koordinierend</td><td>Ich bleibe hier, denn es regnet.</td></tr><tr><td>sondern</td><td>but rather</td><td>Koordinierend</td><td>Nicht heute, sondern morgen.</td></tr><tr><td>weil</td><td>because</td><td>Subordinierend</td><td>Ich lerne, weil ich die Prüfung habe.</td></tr><tr><td>dass</td><td>that</td><td>Subordinierend</td><td>Ich glaube, dass er kommt.</td></tr><tr><td>ob</td><td>whether/if</td><td>Subordinierend</td><td>Ich weiß nicht, ob er kommt.</td></tr><tr><td>wenn</td><td>if/when</td><td>Subordinierend</td><td>Wenn es regnet, bleibe ich zu Hause.</td></tr><tr><td>als</td><td>when (past)</td><td>Subordinierend</td><td>Als ich jung war, lebte ich in Berlin.</td></tr><tr><td>während</td><td>while</td><td>Subordinierend</td><td>Ich arbeite, während du schläfst.</td></tr><tr><td>bevor</td><td>before</td><td>Subordinierend</td><td>Wasch die Hände, bevor du isst.</td></tr><tr><td>nachdem</td><td>after</td><td>Subordinierend</td><td>Nachdem ich gegessen habe, gehe ich.</td></tr><tr><td>seit</td><td>since</td><td>Subordinierend</td><td>Seit ich hier wohne, bin ich glücklich.</td></tr><tr><td>bis</td><td>until</td><td>Subordinierend</td><td>Warte hier, bis ich zurückkomme.</td></tr><tr><td>obwohl</td><td>although</td><td>Subordinierend</td><td>Ich gehe, obwohl es regnet.</td></tr><tr><td>damit</td><td>so that</td><td>Subordinierend</td><td>Ich lerne, damit ich bestehe.</td></tr><tr><td>falls</td><td>in case</td><td>Subordinierend</td><td>Falls er kommt, ruf mich an.</td></tr><tr><td>sobald</td><td>as soon as</td><td>Subordinierend</td><td>Sobald ich fertig bin, komme ich.</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="category" id="prepositions">
+        <h2>📍 Präpositionen (Prepositions) - 24 Wörter</h2>
+        <table>
+            <thead>
+                <tr><th>Deutsch</th><th>English</th><th>Kasus</th><th>Beispielsatz</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>durch</td><td>through</td><td>Akkusativ</td><td>Wir gehen durch den Park.</td></tr><tr><td>für</td><td>for</td><td>Akkusativ</td><td>Das ist für dich.</td></tr><tr><td>gegen</td><td>against</td><td>Akkusativ</td><td>Ich bin gegen diese Idee.</td></tr><tr><td>ohne</td><td>without</td><td>Akkusativ</td><td>Ich gehe ohne dich.</td></tr><tr><td>um</td><td>around/at</td><td>Akkusativ</td><td>Der Laden ist um die Ecke.</td></tr><tr><td>aus</td><td>out of/from</td><td>Dativ</td><td>Ich komme aus Deutschland.</td></tr><tr><td>bei</td><td>at/with</td><td>Dativ</td><td>Ich wohne bei meinen Eltern.</td></tr><tr><td>mit</td><td>with</td><td>Dativ</td><td>Ich fahre mit dem Bus.</td></tr><tr><td>nach</td><td>after/to</td><td>Dativ</td><td>Nach dem Essen gehe ich spazieren.</td></tr><tr><td>seit</td><td>since</td><td>Dativ</td><td>Ich wohne seit drei Jahren hier.</td></tr><tr><td>von</td><td>from/of</td><td>Dativ</td><td>Das Buch ist von meinem Freund.</td></tr><tr><td>zu</td><td>to</td><td>Dativ</td><td>Ich gehe zu meiner Oma.</td></tr><tr><td>an</td><td>at/on</td><td>Wechsel</td><td>Ich hänge das Bild an die Wand. (Akk)</td></tr><tr><td>auf</td><td>on/onto</td><td>Wechsel</td><td>Das Buch liegt auf dem Tisch. (Dat)</td></tr><tr><td>hinter</td><td>behind</td><td>Wechsel</td><td>Der Garten ist hinter dem Haus.</td></tr><tr><td>in</td><td>in/into</td><td>Wechsel</td><td>Ich gehe in die Stadt. (Akk)</td></tr><tr><td>neben</td><td>next to</td><td>Wechsel</td><td>Die Bank ist neben der Post.</td></tr><tr><td>über</td><td>over/above</td><td>Wechsel</td><td>Die Lampe hängt über dem Tisch.</td></tr><tr><td>unter</td><td>under</td><td>Wechsel</td><td>Die Katze ist unter dem Bett.</td></tr><tr><td>vor</td><td>in front of</td><td>Wechsel</td><td>Das Auto steht vor dem Haus.</td></tr><tr><td>zwischen</td><td>between</td><td>Wechsel</td><td>Die Bank ist zwischen Café und Kino.</td></tr><tr><td>während</td><td>during</td><td>Genitiv</td><td>Während des Unterrichts bin ich still.</td></tr><tr><td>wegen</td><td>because of</td><td>Genitiv</td><td>Wegen des Regens bleibe ich zu Hause.</td></tr><tr><td>trotz</td><td>despite</td><td>Genitiv</td><td>Trotz des Regens gehe ich raus.</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="category" id="adverbs">
+        <h2>🕐 Adverbien (Adverbs) - 27 Wörter</h2>
+        <table>
+            <thead>
+                <tr><th>Deutsch</th><th>English</th><th>Typ</th><th>Beispielsatz</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>heute</td><td>today</td><td>Zeit</td><td>Heute ist Montag.</td></tr><tr><td>morgen</td><td>tomorrow</td><td>Zeit</td><td>Morgen habe ich frei.</td></tr><tr><td>gestern</td><td>yesterday</td><td>Zeit</td><td>Gestern war Sonntag.</td></tr><tr><td>jetzt</td><td>now</td><td>Zeit</td><td>Ich muss jetzt gehen.</td></tr><tr><td>bald</td><td>soon</td><td>Zeit</td><td>Wir sehen uns bald.</td></tr><tr><td>später</td><td>later</td><td>Zeit</td><td>Ich komme später.</td></tr><tr><td>immer</td><td>always</td><td>Zeit</td><td>Er kommt immer zu spät.</td></tr><tr><td>nie</td><td>never</td><td>Zeit</td><td>Ich rauche nie.</td></tr><tr><td>oft</td><td>often</td><td>Zeit</td><td>Wir gehen oft spazieren.</td></tr><tr><td>manchmal</td><td>sometimes</td><td>Zeit</td><td>Manchmal esse ich Pizza.</td></tr><tr><td>schon</td><td>already</td><td>Zeit</td><td>Ich bin schon fertig.</td></tr><tr><td>noch</td><td>still/yet</td><td>Zeit</td><td>Er ist noch nicht da.</td></tr><tr><td>hier</td><td>here</td><td>Ort</td><td>Komm hier!</td></tr><tr><td>dort</td><td>there</td><td>Ort</td><td>Das Café ist dort.</td></tr><tr><td>oben</td><td>above/upstairs</td><td>Ort</td><td>Mein Zimmer ist oben.</td></tr><tr><td>unten</td><td>below/downstairs</td><td>Ort</td><td>Die Küche ist unten.</td></tr><tr><td>links</td><td>left</td><td>Ort</td><td>Biegen Sie links ab.</td></tr><tr><td>rechts</td><td>right</td><td>Ort</td><td>Die Bank ist rechts.</td></tr><tr><td>überall</td><td>everywhere</td><td>Ort</td><td>Es gibt überall Wi-Fi.</td></tr><tr><td>gern</td><td>gladly</td><td>Art und Weise</td><td>Ich schwimme gern.</td></tr><tr><td>gut</td><td>well</td><td>Art und Weise</td><td>Er spricht gut Deutsch.</td></tr><tr><td>schnell</td><td>quickly</td><td>Art und Weise</td><td>Lauf schnell!</td></tr><tr><td>langsam</td><td>slowly</td><td>Art und Weise</td><td>Sprich langsam, bitte.</td></tr><tr><td>sehr</td><td>very</td><td>Grad</td><td>Das ist sehr gut.</td></tr><tr><td>ziemlich</td><td>quite</td><td>Grad</td><td>Es ist ziemlich kalt.</td></tr><tr><td>zusammen</td><td>together</td><td>Art und Weise</td><td>Wir arbeiten zusammen.</td></tr><tr><td>allein</td><td>alone</td><td>Art und Weise</td><td>Ich lebe allein.</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="category" id="adjectives">
+        <h2>✨ Adjektive (Adjectives) - 39 Wörter</h2>
+        <table>
+            <thead>
+                <tr><th>Deutsch</th><th>English</th><th>Kategorie</th><th>Beispielsatz</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>groß</td><td>big/tall</td><td>Größe</td><td>Das ist ein großes Haus.</td></tr><tr><td>klein</td><td>small</td><td>Größe</td><td>Ich habe eine kleine Wohnung.</td></tr><tr><td>alt</td><td>old</td><td>Alter</td><td>Mein Auto ist alt.</td></tr><tr><td>neu</td><td>new</td><td>Alter</td><td>Ich habe ein neues Handy.</td></tr><tr><td>jung</td><td>young</td><td>Alter</td><td>Sie ist noch jung.</td></tr><tr><td>gut</td><td>good</td><td>Qualität</td><td>Das ist ein guter Film.</td></tr><tr><td>schlecht</td><td>bad</td><td>Qualität</td><td>Das Wetter ist schlecht.</td></tr><tr><td>schön</td><td>beautiful</td><td>Qualität</td><td>Was für ein schöner Tag!</td></tr><tr><td>lang</td><td>long</td><td>Größe</td><td>Das ist ein langer Weg.</td></tr><tr><td>kurz</td><td>short</td><td>Größe</td><td>Ich habe kurze Haare.</td></tr><tr><td>hoch</td><td>high</td><td>Größe</td><td>Der Berg ist sehr hoch.</td></tr><tr><td>schwer</td><td>heavy/difficult</td><td>Gewicht</td><td>Die Tasche ist schwer.</td></tr><tr><td>leicht</td><td>light/easy</td><td>Gewicht</td><td>Die Prüfung ist leicht.</td></tr><tr><td>stark</td><td>strong</td><td>Kraft</td><td>Er ist sehr stark.</td></tr><tr><td>schnell</td><td>fast</td><td>Tempo</td><td>Das Auto ist schnell.</td></tr><tr><td>langsam</td><td>slow</td><td>Tempo</td><td>Die Schnecke ist langsam.</td></tr><tr><td>warm</td><td>warm</td><td>Temperatur</td><td>Der Kaffee ist warm.</td></tr><tr><td>kalt</td><td>cold</td><td>Temperatur</td><td>Das Wasser ist kalt.</td></tr><tr><td>heiß</td><td>hot</td><td>Temperatur</td><td>Im Sommer ist es heiß.</td></tr><tr><td>hell</td><td>bright</td><td>Farbe</td><td>Das Zimmer ist hell.</td></tr><tr><td>dunkel</td><td>dark</td><td>Farbe</td><td>Es ist schon dunkel.</td></tr><tr><td>laut</td><td>loud</td><td>Lautstärke</td><td>Die Musik ist zu laut.</td></tr><tr><td>leise</td><td>quiet</td><td>Lautstärke</td><td>Sprich leise!</td></tr><tr><td>teuer</td><td>expensive</td><td>Preis</td><td>Diese Tasche ist teuer.</td></tr><tr><td>billig</td><td>cheap</td><td>Preis</td><td>Das T-Shirt ist billig.</td></tr><tr><td>voll</td><td>full</td><td>Menge</td><td>Der Bus ist voll.</td></tr><tr><td>leer</td><td>empty</td><td>Menge</td><td>Die Flasche ist leer.</td></tr><tr><td>sauber</td><td>clean</td><td>Zustand</td><td>Das Zimmer ist sauber.</td></tr><tr><td>schmutzig</td><td>dirty</td><td>Zustand</td><td>Meine Schuhe sind schmutzig.</td></tr><tr><td>gesund</td><td>healthy</td><td>Gesundheit</td><td>Obst ist gesund.</td></tr><tr><td>krank</td><td>sick</td><td>Gesundheit</td><td>Ich bin krank.</td></tr><tr><td>müde</td><td>tired</td><td>Zustand</td><td>Ich bin so müde.</td></tr><tr><td>glücklich</td><td>happy</td><td>Emotion</td><td>Sie ist sehr glücklich.</td></tr><tr><td>traurig</td><td>sad</td><td>Emotion</td><td>Warum bist du traurig?</td></tr><tr><td>wichtig</td><td>important</td><td>Bedeutung</td><td>Das ist sehr wichtig.</td></tr><tr><td>interessant</td><td>interesting</td><td>Bedeutung</td><td>Das Buch ist interessant.</td></tr><tr><td>langweilig</td><td>boring</td><td>Bedeutung</td><td>Der Film ist langweilig.</td></tr><tr><td>schwierig</td><td>difficult</td><td>Schwierigkeit</td><td>Die Aufgabe ist schwierig.</td></tr><tr><td>einfach</td><td>simple</td><td>Schwierigkeit</td><td>Die Lösung ist einfach.</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div style="text-align:center; margin: 40px 0 20px 0;">
+        <a href="index.html" style="color:var(--text); text-decoration:none; font-size: 16px;">← Zurück zur Hauptseite</a>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+
+        // Load saved theme (default to dark)
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+</body>
+</html>
+    

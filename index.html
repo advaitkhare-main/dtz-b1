@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="dark">
+<head>
+    <title>DTZ B1 Wortschatz & Verben Übungen 11-18</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        :root {
+            --bg: #ffffff;
+            --text: #333333;
+            --card-bg: #f8f9fa;
+            --border: #dee2e6;
+            --header-bg: #007bff;
+            --header-text: white;
+            --link-color: #007bff;
+        }
+        [data-theme="dark"] {
+            --bg: #121212;
+            --text: #f0f0f0;
+            --card-bg: #1e1e1e;
+            --border: #404040;
+            --header-bg: #1e40af;
+            --header-text: white;
+            --link-color: #60a5fa;
+        }
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: var(--header-bg) var(--card-bg);
+        }
+        body {
+            font-family: 'Segoe UI', -apple-system, sans-serif;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            transition: background 0.3s, color 0.3s;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        h1 {
+            color: var(--header-bg);
+            margin-bottom: 10px;
+        }
+        h2 {
+            color: var(--header-bg);
+            border-bottom: 2px solid var(--header-bg);
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        .toc {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 4px solid var(--header-bg);
+        }
+        .toc h3 {
+            margin-top: 0;
+            color: var(--header-bg);
+        }
+        .toc ul {
+            list-style: none;
+            padding: 0;
+        }
+        .toc li {
+            margin: 10px 0;
+        }
+        .toc a {
+            color: var(--link-color);
+            text-decoration: none;
+            font-size: 18px;
+            transition: all 0.2s;
+        }
+        .toc a:hover {
+            text-decoration: underline;
+            padding-left: 10px;
+        }
+        .toggle {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .toggle button {
+            background: var(--header-bg);
+            color: var(--header-text);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .toggle button:hover {
+            opacity: 0.9;
+            transform: scale(1.05);
+        }
+        .search {
+            margin: 30px 0;
+        }
+        input[type="search"] {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            box-sizing: border-box;
+            background: var(--card-bg);
+            color: var(--text);
+        }
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+        th {
+            background: var(--header-bg);
+            color: var(--header-text);
+            padding: 15px 10px;
+            font-weight: bold;
+            text-align: left;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            cursor: pointer;
+            user-select: none;
+        }
+        th:hover {
+            background: #0056b3;
+        }
+        th::after {
+            content: ' ⇅';
+            opacity: 0.5;
+            font-size: 12px;
+        }
+        td {
+            padding: 12px 10px;
+            border-bottom: 1px solid var(--border);
+        }
+        tr:nth-child(even) {
+            background: rgba(255,255,255,0.05);
+        }
+        tr:hover {
+            background: rgba(0,123,255,0.1);
+        }
+        .verbs-table th {
+            font-size: 13px;
+            padding: 12px 8px;
+        }
+        .verbs-table td {
+            font-size: 13px;
+            padding: 10px 8px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            background: var(--card-bg);
+            border-radius: 12px;
+        }
+        .info-box {
+            background: #fff3cd;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #ffc107;
+        }
+        [data-theme="dark"] .info-box {
+            background: #2d2a1f;
+            color: #ffc107;
+        }
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            table {
+                font-size: 11px;
+            }
+            th, td {
+                padding: 8px 5px;
+            }
+            .toc a {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body data-theme="dark">
+    <div class="header">
+        <h1>📚 DTZ B1 Hören Vorbereitung</h1>
+        <p><small>Komplette Wortlisten & Verben aus YouTube Übungen 16, 17, 18 | Dark Mode + Suche + Sortierbar</small></p>
+    </div>
+
+    <div class="page-navigation" style="display: flex; gap: 15px; justify-content: center; margin: 20px 0; flex-wrap: wrap;">
+    <a href="flashcards.html" style="padding: 10px 20px; background: var(--header-bg); color: white; text-decoration: none; border-radius: 8px; font-weight: 600;">
+        🃏 Flashcards öffnen
+    </a>
+    <a href="grammar.html" style="padding: 10px 20px; background: var(--header-bg); color: white; text-decoration: none; border-radius: 8px; font-weight: 600;">
+        📚 Grammatik Referenz
+    </a>
+</div>
+    <!-- Table of Contents -->
+    <div class="toc">
+        <h3>📋 Inhaltsverzeichnis / Table of Contents</h3>
+        <ul>
+            <li><a href="#wordsTable">→ Wortliste (273 Wörter) - <em>Click headers to sort!</em></a></li>
+            <li><a href="#verbsTable">→ Verben mit vollständiger Konjugation (76 Verben) - <em>Click headers to sort!</em></a></li>
+        </ul>
+    </div>
+
+    <div class="info-box">
+        <strong>💡 Tip:</strong> Click any table header to sort alphabetically. Click again to reverse order!
+    </div>
+
+    <div class="toggle">
+        <button onclick="toggleTheme()">🌓 Dark Mode Toggle</button>
+    </div>
+
+    <div class="search">
+        <input type="search" id="searchBox" placeholder="🔍 Suche in Wörtern oder Verben... z.B. Termin, arbeiten, geben">
+    </div>
+
+    <h2 id="wordsTable">📖 Vollständige Wortliste (273 Wörter)</h2>
+    <div class="table-container">
+        <table id="wordsTableElem">
+            <thead>
+                <tr>
+                    <th onclick="sortTable('wordsTableElem', 0)">Artikel</th>
+                    <th onclick="sortTable('wordsTableElem', 1)">Deutsch</th>
+                    <th onclick="sortTable('wordsTableElem', 2)">English</th>
+                </tr>
+            </thead>
+            <tbody id="wordsTableBody">
+                <tr><td>die</td><td>Ansage</td><td>announcement</td></tr><tr><td>die</td><td>Aufgabe</td><td>task</td></tr><tr><td>die</td><td>Lösung</td><td>solution</td></tr><tr><td>der</td><td>Antwortbogen</td><td>answer sheet</td></tr><tr><td>die</td><td>Fahrgäste</td><td>passengers</td></tr><tr><td>die</td><td>U-Bahnlinie</td><td>underground line</td></tr><tr><td>das</td><td>Monatsticket</td><td>monthly ticket</td></tr><tr><td>der</td><td>Fahrer</td><td>driver</td></tr><tr><td>die</td><td>Buslinie</td><td>bus line</td></tr><tr><td>das</td><td>Ticket</td><td>ticket</td></tr><tr><td>der</td><td>Infopoint</td><td>information desk</td></tr><tr><td>das</td><td>Fundbüro</td><td>lost property office</td></tr><tr><td>die</td><td>Öffnungszeiten</td><td>opening times</td></tr><tr><td>der</td><td>Ausweis</td><td>ID card</td></tr><tr><td>der</td><td>Termin</td><td>appointment</td></tr><tr><td>die</td><td>Firma</td><td>company</td></tr><tr><td>der</td><td>Projektleiter</td><td>project manager</td></tr><tr><td>die</td><td>Dienstreise</td><td>business trip</td></tr><tr><td>die</td><td>Onlinebesprechung</td><td>online meeting</td></tr><tr><td>die</td><td>Praxis</td><td>doctor's practice</td></tr><tr><td>das</td><td>Seminar</td><td>seminar</td></tr><tr><td>der</td><td>Kundenservice</td><td>customer service</td></tr><tr><td>die</td><td>Energieversorgung</td><td>energy supply</td></tr><tr><td>der</td><td>Tarif</td><td>tariff</td></tr><tr><td>die</td><td>Webseite</td><td>website</td></tr><tr><td>die</td><td>Rechnung</td><td>bill</td></tr><tr><td>der</td><td>Zahlungsstatus</td><td>payment status</td></tr><tr><td>die</td><td>Kundennummer</td><td>customer number</td></tr><tr><td>das</td><td>technisches Problem</td><td>technical problem</td></tr><tr><td>die</td><td>Reparatur</td><td>repair</td></tr><tr><td>der</td><td>Zähler</td><td>meter</td></tr><tr><td>der</td><td>Mitarbeiter</td><td>staff member</td></tr><tr><td>die</td><td>Großveranstaltung</td><td>major event</td></tr><tr><td>das</td><td>Stadion</td><td>stadium</td></tr><tr><td>die</td><td>Straßenbahnlinie</td><td>tram line</td></tr><tr><td>die</td><td>Verbindung</td><td>connection</td></tr><tr><td>die</td><td>Verzögerung</td><td>delay</td></tr><tr><td>das</td><td>Verständnis</td><td>understanding</td></tr><tr><td>der</td><td>Wetterbericht</td><td>weather report</td></tr><tr><td>der</td><td>Regen</td><td>rain</td></tr><tr><td>der</td><td>Wind</td><td>wind</td></tr><tr><td>die</td><td>Temperatur</td><td>temperature</td></tr><tr><td>der</td><td>Schnee</td><td>snow</td></tr><tr><td>die</td><td>Sportsendung</td><td>sports programme</td></tr><tr><td>das</td><td>Kinderhörspiel</td><td>children's radio play</td></tr><tr><td>das</td><td>Konzert</td><td>concert</td></tr><tr><td>die</td><td>klassische Musik</td><td>classical music</td></tr><tr><td>die</td><td>Verkehrsmeldung</td><td>traffic report</td></tr><tr><td>die</td><td>Behinderung</td><td>obstruction</td></tr><tr><td>das</td><td>Verkehrsaufkommen</td><td>traffic volume</td></tr><tr><td>der</td><td>Zeitverlust</td><td>time loss</td></tr><tr><td>der</td><td>Gesundheitshinweis</td><td>health notice</td></tr><tr><td>die</td><td>Grippewelle</td><td>flu wave</td></tr><tr><td>das</td><td>Robert-Koch-Institut</td><td>Robert Koch Institute</td></tr><tr><td>die</td><td>STIKO</td><td>standing vaccination committee</td></tr><tr><td>die</td><td>Grippeschutzimpfung</td><td>flu vaccination</td></tr><tr><td>der</td><td>Hausarzt</td><td>family doctor</td></tr><tr><td>die</td><td>Bewegung</td><td>exercise</td></tr><tr><td>die</td><td>Armbeuge</td><td>crook of the arm</td></tr><tr><td>die</td><td>Schülerin</td><td>female pupil</td></tr><tr><td>der</td><td>Schulleiter</td><td>head teacher</td></tr><tr><td>das</td><td>Förderprogramm</td><td>support programme</td></tr><tr><td>das</td><td>Training</td><td>training</td></tr><tr><td>der</td><td>Wettkampf</td><td>competition</td></tr><tr><td>das</td><td>Sportevent</td><td>sports event</td></tr><tr><td>die</td><td>Zustimmung</td><td>consent</td></tr><tr><td>die</td><td>Eltern</td><td>parents</td></tr><tr><td>das</td><td>Krankengeld</td><td>sickness benefit</td></tr><tr><td>das</td><td>Formular</td><td>form</td></tr><tr><td>die</td><td>Unterschrift</td><td>signature</td></tr><tr><td>die</td><td>Familienversicherung</td><td>family insurance</td></tr><tr><td>die</td><td>Bescheinigung</td><td>certificate</td></tr><tr><td>der</td><td>Arbeitgeber</td><td>employer</td></tr><tr><td>die</td><td>Buchhaltung</td><td>accounting</td></tr><tr><td>der</td><td>Lebenslauf</td><td>CV</td></tr><tr><td>die</td><td>Festanstellung</td><td>permanent position</td></tr><tr><td>der</td><td>Sprachkurs</td><td>language course</td></tr><tr><td>die</td><td>Waschmaschine</td><td>washing machine</td></tr><tr><td>das</td><td>Lager</td><td>warehouse</td></tr><tr><td>das</td><td>Gerät</td><td>device</td></tr><tr><td>die</td><td>Lieferung</td><td>delivery</td></tr><tr><td>die</td><td>Technik</td><td>technology</td></tr><tr><td>das</td><td>Tablet</td><td>tablet</td></tr><tr><td>das</td><td>Schulbuch</td><td>schoolbook</td></tr><tr><td>die</td><td>Schultasche</td><td>school bag</td></tr><tr><td>das</td><td>Lernmaterial</td><td>learning material</td></tr><tr><td>die</td><td>Reisende</td><td>traveller</td></tr><tr><td>der</td><td>ICE</td><td>high-speed train</td></tr><tr><td>der</td><td>Zug</td><td>train</td></tr><tr><td>das</td><td>Bordbistro</td><td>on-board bistro</td></tr><tr><td>der</td><td>Wagen</td><td>carriage</td></tr><tr><td>die</td><td>Suppe</td><td>soup</td></tr><tr><td>die</td><td>Pasta</td><td>pasta</td></tr><tr><td>die</td><td>Option</td><td>option</td></tr><tr><td>der</td><td>Halt</td><td>stop</td></tr><tr><td>der</td><td>Aufenthalt</td><td>stopover</td></tr><tr><td>die</td><td>Bahnhofsbäckerei</td><td>station bakery</td></tr><tr><td>die</td><td>Brötchen</td><td>bread roll</td></tr><tr><td>die</td><td>Teilchen</td><td>pastry</td></tr><tr><td>die</td><td>Abfahrtszeit</td><td>departure time</td></tr><tr><td>die</td><td>Lampe</td><td>lamp</td></tr><tr><td>der</td><td>Flur</td><td>hallway</td></tr><tr><td>der</td><td>Heimweg</td><td>way home</td></tr><tr><td>der</td><td>Kuchen</td><td>cake</td></tr><tr><td>die</td><td>Bäckerei</td><td>bakery</td></tr><tr><td>der</td><td>Bus</td><td>bus</td></tr><tr><td>die</td><td>Tante</td><td>aunt</td></tr><tr><td>der</td><td>Einkauf</td><td>shopping</td></tr><tr><td>das</td><td>Blut</td><td>blood</td></tr><tr><td>die</td><td>Schilddrüsenwerte</td><td>thyroid levels</td></tr><tr><td>das</td><td>E-Rezept</td><td>e-prescription</td></tr><tr><td>die</td><td>Gesundheitskarte</td><td>health card</td></tr><tr><td>die</td><td>Apotheke</td><td>pharmacy</td></tr><tr><td>das</td><td>Medikament</td><td>medicine</td></tr><tr><td>die</td><td>Tablette</td><td>pill</td></tr><tr><td>die</td><td>Kontrolle</td><td>check-up</td></tr><tr><td>die</td><td>Wohngemeinschaft</td><td>shared flat</td></tr><tr><td>das</td><td>Homeoffice</td><td>home office</td></tr><tr><td>das</td><td>Budget</td><td>budget</td></tr><tr><td>die</td><td>Katzenallergie</td><td>cat allergy</td></tr><tr><td>die</td><td>U-Bahnanbindung</td><td>underground connection</td></tr><tr><td>die</td><td>Warmmiete</td><td>rent incl. utilities</td></tr><tr><td>die</td><td>Haltestelle</td><td>bus stop</td></tr><tr><td>die</td><td>Haustiere</td><td>pets</td></tr><tr><td>die</td><td>Ferienwohnung</td><td>holiday apartment</td></tr><tr><td>das</td><td>Apartment</td><td>apartment</td></tr><tr><td>die</td><td>Stornierung</td><td>cancellation</td></tr><tr><td>die</td><td>Endreinigung</td><td>final cleaning</td></tr><tr><td>die</td><td>Miete</td><td>rent</td></tr><tr><td>das</td><td>Flexicket</td><td>flex ticket</td></tr><tr><td>der</td><td>Aufenthaltstitel</td><td>residence permit</td></tr><tr><td>das</td><td>Jobangebot</td><td>job offer</td></tr><tr><td>der</td><td>Arbeitsvertrag</td><td>employment contract</td></tr><tr><td>das</td><td>Hochschuldiplom</td><td>university degree</td></tr><tr><td>das</td><td>Gehalt</td><td>salary</td></tr><tr><td>die</td><td>Fachkraft</td><td>skilled worker</td></tr><tr><td>die</td><td>Krankenversicherung</td><td>health insurance</td></tr><tr><td>der</td><td>Mietvertrag</td><td>rental contract</td></tr><tr><td>der</td><td>Geschirrspüler</td><td>dishwasher</td></tr><tr><td>die</td><td>Fehlerdiagnose</td><td>fault diagnosis</td></tr><tr><td>die</td><td>Ersatzpumpe</td><td>replacement pump</td></tr><tr><td>die</td><td>Arbeitszeit</td><td>working time</td></tr><tr><td>die</td><td>Anfahrt</td><td>call-out fee</td></tr><tr><td>die</td><td>Besprechung</td><td>meeting</td></tr><tr><td>die</td><td>Bibliothek</td><td>library</td></tr><tr><td>das</td><td>Gemeindehaus</td><td>community hall</td></tr><tr><td>die</td><td>Turnhalle</td><td>gymnasium</td></tr><tr><td>die</td><td>Stühle</td><td>chairs</td></tr><tr><td>die</td><td>Sitzmöglichkeiten</td><td>seating</td></tr><tr><td>die</td><td>Verabredung</td><td>appointment</td></tr><tr><td>der</td><td>Salat</td><td>salad</td></tr><tr><td>der</td><td>Geburtstag</td><td>birthday</td></tr><tr><td>die</td><td>Musikbox</td><td>music box</td></tr><tr><td>die</td><td>Anlage</td><td>system</td></tr><tr><td>der</td><td>Gemüsesalat</td><td>vegetable salad</td></tr><tr><td>die</td><td>Getränke</td><td>drinks</td></tr><tr><td>der</td><td>Garten</td><td>garden</td></tr><tr><td>die</td><td>Reise</td><td>trip</td></tr><tr><td>die</td><td>Verspätung</td><td>delay</td></tr><tr><td>das</td><td>Wasserwerk</td><td>waterworks</td></tr><tr><td>die</td><td>Proben</td><td>samples</td></tr><tr><td>die</td><td>Leitungen</td><td>pipes</td></tr><tr><td>der</td><td>Ersatzschlüssel</td><td>spare key</td></tr><tr><td>die</td><td>Zahnarztpraxis</td><td>dentist's practice</td></tr><tr><td>die</td><td>Sprechzeiten</td><td>office hours</td></tr><tr><td>die</td><td>Mittagspause</td><td>lunch break</td></tr><tr><td>die</td><td>Fortbildung</td><td>training</td></tr><tr><td>der</td><td>Notdienst</td><td>emergency service</td></tr><tr><td>die</td><td>Livesendung</td><td>live broadcast</td></tr><tr><td>der</td><td>Studiogast</td><td>studio guest</td></tr><tr><td>die</td><td>Reisetipps</td><td>travel tips</td></tr><tr><td>die</td><td>Literatursendung</td><td>literature program</td></tr><tr><td>die</td><td>Onlineartikel</td><td>online articles</td></tr><tr><td>die</td><td>Social-Media-Texte</td><td>social media texts</td></tr><tr><td>die</td><td>Podcasts</td><td>podcasts</td></tr><tr><td>die</td><td>Lesekultur</td><td>reading culture</td></tr><tr><td>das</td><td>Altstadtfest</td><td>old town festival</td></tr><tr><td>die</td><td>Fahrradbrücke</td><td>bike bridge</td></tr><tr><td>der</td><td>Verkehr</td><td>traffic</td></tr><tr><td>die</td><td>Innenstadt</td><td>city center</td></tr><tr><td>die</td><td>Regeln</td><td>rules</td></tr><tr><td>die</td><td>Unfälle</td><td>accidents</td></tr><tr><td>die</td><td>Schulertickets</td><td>student tickets</td></tr><tr><td>die</td><td>Sommerferien</td><td>summer holidays</td></tr><tr><td>die</td><td>Garantie</td><td>warranty</td></tr><tr><td>der</td><td>Supermarkt</td><td>supermarket</td></tr><tr><td>die</td><td>Wartungsarbeiten</td><td>maintenance work</td></tr><tr><td>die</td><td>Selbstbedienungskassen</td><td>self-checkout</td></tr><tr><td>die</td><td>Mitglieder</td><td>members</td></tr><tr><td>der</td><td>Tanzfitnesskurs</td><td>dance fitness course</td></tr><tr><td>die</td><td>Rezeption</td><td>reception</td></tr><tr><td>das</td><td>Theaterstück</td><td>play (theater)</td></tr><tr><td>die</td><td>Vorstellungen</td><td>performances</td></tr><tr><td>die</td><td>Freikarten</td><td>free tickets</td></tr><tr><td>das</td><td>Wissenschaftszentrum</td><td>science center</td></tr><tr><td>die</td><td>Raumfahrt</td><td>space travel</td></tr><tr><td>die</td><td>Künstliche Intelligenz</td><td>artificial intelligence</td></tr><tr><td>das</td><td>Gewitter</td><td>thunderstorm</td></tr><tr><td>der</td><td>Berufsverkehr</td><td>rush hour traffic</td></tr><tr><td>das</td><td>Gewinnspiel</td><td>prize draw</td></tr><tr><td>der</td><td>Gutschein</td><td>voucher</td></tr><tr><td>der</td><td>Kurzurlaub</td><td>short trip</td></tr><tr><td>der</td><td>Führerschein</td><td>driver's license</td></tr><tr><td>die</td><td>Theorieprüfung</td><td>theory exam</td></tr><tr><td>der</td><td>Seetest</td><td>eye test</td></tr><tr><td>der</td><td>Erste-Hilfe-Kurs</td><td>first aid course</td></tr><tr><td>die</td><td>Ausbildung</td><td>vocational training</td></tr><tr><td>das</td><td>Grafikdesign</td><td>graphic design</td></tr><tr><td>der</td><td>Realschulabschluss</td><td>secondary school certificate</td></tr><tr><td>das</td><td>Abitur</td><td>high school diploma</td></tr><tr><td>die</td><td>Berufsfachschule</td><td>vocational school</td></tr><tr><td>die</td><td>Pflege</td><td>nursing/care</td></tr><tr><td>der</td><td>Einzelhandel</td><td>retail</td></tr><tr><td>die</td><td>Logistik</td><td>logistics</td></tr><tr><td>die</td><td>Berufsinformationsmesse</td><td>career fair</td></tr><tr><td>die</td><td>Tierarztpraxis</td><td>veterinary practice</td></tr><tr><td>der</td><td>Impfpass</td><td>vaccination record</td></tr><tr><td>die</td><td>Futterprobe</td><td>food sample</td></tr><tr><td>der</td><td>Scanner</td><td>scanner</td></tr><tr><td>das</td><td>Sonderangebot</td><td>special offer</td></tr><tr><td>das</td><td>Marktteam</td><td>market team</td></tr><tr><td>die</td><td>Nachhilfe</td><td>tutoring</td></tr><tr><td>die</td><td>Schwierigkeiten</td><td>difficulties</td></tr><tr><td>die</td><td>Verbesserung</td><td>improvement</td></tr><tr><td>der</td><td>Lernplan</td><td>study plan</td></tr><tr><td>die</td><td>Karteikarten</td><td>flashcards</td></tr><tr><td>die</td><td>Erklärvideos</td><td>explainer videos</td></tr><tr><td>die</td><td>Belastung</td><td>burden</td></tr><tr><td>die</td><td>Lernhilfen</td><td>learning aids</td></tr><tr><td>die</td><td>Bildung</td><td>education</td></tr><tr><td>die</td><td>Unterschiede</td><td>differences</td></tr><tr><td>die</td><td>WG</td><td>shared flat</td></tr><tr><td>der</td><td>Auflauf</td><td>casserole</td></tr><tr><td>der</td><td>Ofen</td><td>oven</td></tr><tr><td>die</td><td>Verlobung</td><td>engagement</td></tr><tr><td>der</td><td>Ring</td><td>ring</td></tr><tr><td>der</td><td>Finderlohn</td><td>reward</td></tr><tr><td>das</td><td>Reh</td><td>deer</td></tr><tr><td>die</td><td>Fahrbahn</td><td>roadway</td></tr><tr><td>die</td><td>Straßensperrung</td><td>road closure</td></tr><tr><td>das</td><td>Glatteis</td><td>black ice</td></tr><tr><td>der</td><td>Bodenfrost</td><td>ground frost</td></tr><tr><td>die</td><td>Brücken</td><td>bridges</td></tr><tr><td>die</td><td>Nebenstraßen</td><td>side roads</td></tr><tr><td>das</td><td>Stadtmuseum</td><td>city museum</td></tr><tr><td>die</td><td>Halbzeit</td><td>half-time</td></tr><tr><td>der</td><td>Sieg</td><td>victory</td></tr><tr><td>das</td><td>Finale</td><td>final</td></tr><tr><td>der</td><td>Schreibtisch</td><td>desk</td></tr><tr><td>das</td><td>Arbeitszimmer</td><td>study room</td></tr><tr><td>die</td><td>Schubladen</td><td>drawers</td></tr><tr><td>die</td><td>Rückenlehne</td><td>backrest</td></tr><tr><td>die</td><td>Rückenschmerzen</td><td>back pain</td></tr><tr><td>die</td><td>Fahrradmitnahme</td><td>bicycle transport</td></tr><tr><td>der</td><td>Kinderwagen</td><td>stroller</td></tr><tr><td>das</td><td>Vorstellungsgespräch</td><td>job interview</td></tr><tr><td>die</td><td>Vollzeit</td><td>full-time</td></tr><tr><td>die</td><td>Teilzeit</td><td>part-time</td></tr><tr><td>die</td><td>Absagen</td><td>rejections</td></tr><tr><td>der</td><td>Abholschein</td><td>pickup slip</td></tr><tr><td>die</td><td>Vollmacht</td><td>power of attorney</td></tr><tr><td>die</td><td>Zustellung</td><td>delivery</td></tr><tr><td>der</td><td>Absender</td><td>sender</td></tr><tr><td>die</td><td>Ernährung</td><td>nutrition</td></tr><tr><td>die</td><td>Süßigkeiten</td><td>sweets</td></tr><tr><td>die</td><td>Limonade</td><td>lemonade</td></tr><tr><td>die</td><td>Kopfschmerzen</td><td>headache</td></tr><tr><td>die</td><td>Gerichte</td><td>dishes/meals</td></tr><tr><td>die</td><td>Linsen</td><td>lentils</td></tr><tr><td>der</td><td>Tofu</td><td>tofu</td></tr><tr><td>die</td><td>Fertiggerichte</td><td>ready meals</td></tr><tr><td>das</td><td>Salz</td><td>salt</td></tr><tr><td>die</td><td>Dose</td><td>can</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2 id="verbsTable">✏️ Verben mit vollständiger Konjugation (76 B1-Verben)</h2>
+    <p><small><strong>Singular:</strong> ich, du, er/sie/es | <strong>Plural:</strong> wir, ihr, sie/Sie | <strong>Kasus+Präp:</strong> Required case/preposition</small></p>
+    <div class="table-container">
+        <table class="verbs-table" id="verbsTableElem">
+            <thead>
+                <tr>
+                    <th onclick="sortTable('verbsTableElem', 0)">Verb</th>
+                    <th onclick="sortTable('verbsTableElem', 1)">English</th>
+                    <th onclick="sortTable('verbsTableElem', 2)">ich</th>
+                    <th onclick="sortTable('verbsTableElem', 3)">du</th>
+                    <th onclick="sortTable('verbsTableElem', 4)">er/sie/es</th>
+                    <th onclick="sortTable('verbsTableElem', 5)">wir</th>
+                    <th onclick="sortTable('verbsTableElem', 6)">ihr</th>
+                    <th onclick="sortTable('verbsTableElem', 7)">sie/Sie</th>
+                    <th onclick="sortTable('verbsTableElem', 8)">Kasus+Präp</th>
+                </tr>
+            </thead>
+            <tbody id="verbsTableBody">
+                <tr><td><strong>abgeben</strong></td><td>hand in</td><td>gebe ab</td><td>gibst ab</td><td>gibt ab</td><td>geben ab</td><td>gebt ab</td><td>geben ab</td><td>Akk</td></tr><tr><td><strong>abholen</strong></td><td>pick up</td><td>hole ab</td><td>holst ab</td><td>holt ab</td><td>holen ab</td><td>holt ab</td><td>holen ab</td><td>Akk</td></tr><tr><td><strong>absagen</strong></td><td>cancel</td><td>sage ab</td><td>sagst ab</td><td>sagt ab</td><td>sagen ab</td><td>sagt ab</td><td>sagen ab</td><td>Akk</td></tr><tr><td><strong>arbeiten</strong></td><td>work</td><td>arbeite</td><td>arbeitest</td><td>arbeitet</td><td>arbeiten</td><td>arbeitet</td><td>arbeiten</td><td>—</td></tr><tr><td><strong>aufbewahren</strong></td><td>store</td><td>bewahre auf</td><td>bewahrst auf</td><td>bewahrt auf</td><td>bewahren auf</td><td>bewahrt auf</td><td>bewahren auf</td><td>Akk</td></tr><tr><td><strong>auftreten</strong></td><td>occur</td><td>trete auf</td><td>trittst auf</td><td>tritt auf</td><td>treten auf</td><td>tretet auf</td><td>treten auf</td><td>—</td></tr><tr><td><strong>beantragen</strong></td><td>apply</td><td>beantrage</td><td>beantragst</td><td>beantragt</td><td>beantragen</td><td>beantragt</td><td>beantragen</td><td>Akk</td></tr><tr><td><strong>bedienen</strong></td><td>serve</td><td>bediene</td><td>bedienst</td><td>bedient</td><td>bedienen</td><td>bedient</td><td>bedienen</td><td>Akk</td></tr><tr><td><strong>bestätigen</strong></td><td>confirm</td><td>bestätige</td><td>bestätigst</td><td>bestätigt</td><td>bestätigen</td><td>bestätigt</td><td>bestätigen</td><td>Akk</td></tr><tr><td><strong>besichtigen</strong></td><td>view</td><td>besichtige</td><td>besichtigst</td><td>besichtigt</td><td>besichtigen</td><td>besichtigt</td><td>besichtigen</td><td>Akk</td></tr><tr><td><strong>besorgen</strong></td><td>get</td><td>besorge</td><td>besorgst</td><td>besorgt</td><td>besorgen</td><td>besorgt</td><td>besorgen</td><td>Akk</td></tr><tr><td><strong>bilden</strong></td><td>form</td><td>bilde</td><td>bildest</td><td>bildet</td><td>bilden</td><td>bildet</td><td>bilden</td><td>Akk</td></tr><tr><td><strong>bringen</strong></td><td>bring</td><td>bringe</td><td>bringst</td><td>bringt</td><td>bringen</td><td>bringt</td><td>bringen</td><td>Dat+Akk</td></tr><tr><td><strong>buchen</strong></td><td>book</td><td>buche</td><td>buchst</td><td>bucht</td><td>buchen</td><td>bucht</td><td>buchen</td><td>Akk</td></tr><tr><td><strong>fahren</strong></td><td>go/drive</td><td>fahre</td><td>fährst</td><td>fährt</td><td>fahren</td><td>fahrt</td><td>fahren</td><td>nach+Dat</td></tr><tr><td><strong>finden</strong></td><td>find</td><td>finde</td><td>findest</td><td>findet</td><td>finden</td><td>findet</td><td>finden</td><td>Akk</td></tr><tr><td><strong>geben</strong></td><td>give</td><td>gebe</td><td>gibst</td><td>gibt</td><td>geben</td><td>gebt</td><td>geben</td><td>Dat+Akk</td></tr><tr><td><strong>gehen</strong></td><td>go</td><td>gehe</td><td>gehst</td><td>geht</td><td>gehen</td><td>geht</td><td>gehen</td><td>—</td></tr><tr><td><strong>hören</strong></td><td>listen</td><td>höre</td><td>hörst</td><td>hört</td><td>hören</td><td>hört</td><td>hören</td><td>Akk</td></tr><tr><td><strong>impfen</strong></td><td>vaccinate</td><td>impfe</td><td>impfst</td><td>impft</td><td>impfen</td><td>impft</td><td>impfen</td><td>Akk</td></tr><tr><td><strong>machen</strong></td><td>do/make</td><td>mache</td><td>machst</td><td>macht</td><td>machen</td><td>macht</td><td>machen</td><td>Akk</td></tr><tr><td><strong>markieren</strong></td><td>mark</td><td>markiere</td><td>markierst</td><td>markiert</td><td>markieren</td><td>markiert</td><td>markieren</td><td>Akk</td></tr><tr><td><strong>melden</strong></td><td>report</td><td>melde</td><td>meldest</td><td>meldet</td><td>melden</td><td>meldet</td><td>melden</td><td>Akk</td></tr><tr><td><strong>nehmen</strong></td><td>take</td><td>nehme</td><td>nimmst</td><td>nimmt</td><td>nehmen</td><td>nehmt</td><td>nehmen</td><td>Akk</td></tr><tr><td><strong>passen</strong></td><td>fit</td><td>passe</td><td>passt</td><td>passt</td><td>passen</td><td>passt</td><td>passen</td><td>zu+Dat</td></tr><tr><td><strong>planen</strong></td><td>plan</td><td>plane</td><td>planst</td><td>plant</td><td>planen</td><td>plant</td><td>planen</td><td>Akk</td></tr><tr><td><strong>pumpen</strong></td><td>pump</td><td>pumpe</td><td>pumpst</td><td>pumpt</td><td>pumpen</td><td>pumpt</td><td>pumpen</td><td>Akk</td></tr><tr><td><strong>prüfen</strong></td><td>check</td><td>prüfe</td><td>prüfst</td><td>prüft</td><td>prüfen</td><td>prüft</td><td>prüfen</td><td>Akk</td></tr><tr><td><strong>rufen</strong></td><td>call</td><td>rufe</td><td>rufst</td><td>ruft</td><td>rufen</td><td>ruft</td><td>rufen</td><td>Akk</td></tr><tr><td><strong>reinigen</strong></td><td>clean</td><td>reinige</td><td>reinigst</td><td>reinigt</td><td>reinigen</td><td>reinigt</td><td>reinigen</td><td>Akk</td></tr><tr><td><strong>reparieren</strong></td><td>repair</td><td>repariere</td><td>reparierst</td><td>repariert</td><td>reparieren</td><td>repariert</td><td>reparieren</td><td>Akk</td></tr><tr><td><strong>reservieren</strong></td><td>reserve</td><td>reserviere</td><td>reservierst</td><td>reserviert</td><td>reservieren</td><td>reserviert</td><td>reservieren</td><td>Akk</td></tr><tr><td><strong>schicken</strong></td><td>send</td><td>schicke</td><td>schickst</td><td>schickt</td><td>schicken</td><td>schickt</td><td>schicken</td><td>Dat+Akk</td></tr><tr><td><strong>schließen</strong></td><td>close</td><td>schließe</td><td>schließt</td><td>schließt</td><td>schließen</td><td>schließt</td><td>schließen</td><td>Akk</td></tr><tr><td><strong>sprechen</strong></td><td>speak</td><td>spreche</td><td>sprichst</td><td>spricht</td><td>sprechen</td><td>sprecht</td><td>sprechen</td><td>mit+Dat</td></tr><tr><td><strong>sperren</strong></td><td>block</td><td>sperre</td><td>sperrst</td><td>sperrt</td><td>sperren</td><td>sperrt</td><td>sperren</td><td>Akk</td></tr><tr><td><strong>suchen</strong></td><td>search</td><td>suche</td><td>suchst</td><td>sucht</td><td>suchen</td><td>sucht</td><td>suchen</td><td>Akk</td></tr><tr><td><strong>stattfinden</strong></td><td>take place</td><td>finde statt</td><td>findest statt</td><td>findet statt</td><td>finden statt</td><td>findet statt</td><td>finden statt</td><td>—</td></tr><tr><td><strong>teilnehmen</strong></td><td>participate</td><td>nehme teil</td><td>nimmst teil</td><td>nimmt teil</td><td>nehmen teil</td><td>nehmt teil</td><td>nehmen teil</td><td>an+Dat</td></tr><tr><td><strong>tragen</strong></td><td>carry</td><td>trage</td><td>trägst</td><td>trägt</td><td>tragen</td><td>tragt</td><td>tragen</td><td>Akk</td></tr><tr><td><strong>übertragen</strong></td><td>broadcast</td><td>übertrage</td><td>überträgst</td><td>überträgt</td><td>übertragen</td><td>übertragt</td><td>übertragen</td><td>Akk</td></tr><tr><td><strong>unterschreiben</strong></td><td>sign</td><td>unterschreibe</td><td>unterschreibst</td><td>unterschreibt</td><td>unterschreiben</td><td>unterschreibt</td><td>unterschreiben</td><td>Akk</td></tr><tr><td><strong>verbinden</strong></td><td>connect</td><td>verbinde</td><td>verbindest</td><td>verbindet</td><td>verbinden</td><td>verbindet</td><td>verbinden</td><td>Akk+mit</td></tr><tr><td><strong>vereinbaren</strong></td><td>arrange</td><td>vereinbare</td><td>vereinbarst</td><td>vereinbart</td><td>vereinbaren</td><td>vereinbart</td><td>vereinbaren</td><td>Akk</td></tr><tr><td><strong>verspäten</strong></td><td>be late</td><td>verspäte</td><td>verspätest</td><td>verspätet</td><td>verspäten</td><td>verspätet</td><td>verspäten</td><td>sich</td></tr><tr><td><strong>wünschen</strong></td><td>wish</td><td>wünsche</td><td>wünschst</td><td>wünscht</td><td>wünschen</td><td>wünscht</td><td>wünschen</td><td>Dat+Akk</td></tr><tr><td><strong>warten</strong></td><td>wait</td><td>warte</td><td>wartest</td><td>wartet</td><td>warten</td><td>wartet</td><td>warten</td><td>auf+Akk</td></tr><tr><td><strong>waschen</strong></td><td>wash</td><td>wasche</td><td>wäschst</td><td>wäscht</td><td>waschen</td><td>wascht</td><td>waschen</td><td>Akk</td></tr><tr><td><strong>erinnern</strong></td><td>remind</td><td>erinnere</td><td>erinnerst</td><td>erinnert</td><td>erinnern</td><td>erinnert</td><td>erinnern</td><td>an+Akk</td></tr><tr><td><strong>stattfinden</strong></td><td>take place</td><td>findet statt</td><td>findest statt</td><td>findet statt</td><td>finden statt</td><td>findet statt</td><td>finden statt</td><td>—</td></tr><tr><td><strong>renovieren</strong></td><td>renovate</td><td>renoviere</td><td>renovierst</td><td>renoviert</td><td>renovieren</td><td>renoviert</td><td>renovieren</td><td>—</td></tr><tr><td><strong>treffen</strong></td><td>meet</td><td>treffe</td><td>triffst</td><td>trifft</td><td>treffen</td><td>trefft</td><td>treffen</td><td>—</td></tr><tr><td><strong>bringen</strong></td><td>bring</td><td>bringe</td><td>bringst</td><td>bringt</td><td>bringen</td><td>bringt</td><td>bringen</td><td>Akk</td></tr><tr><td><strong>kommen</strong></td><td>come</td><td>komme</td><td>kommst</td><td>kommt</td><td>kommen</td><td>kommt</td><td>kommen</td><td>—</td></tr><tr><td><strong>machen</strong></td><td>make</td><td>mache</td><td>machst</td><td>macht</td><td>machen</td><td>macht</td><td>machen</td><td>Akk</td></tr><tr><td><strong>verpacken</strong></td><td>wrap</td><td>verpacke</td><td>verpackst</td><td>verpackt</td><td>verpacken</td><td>verpackt</td><td>verpacken</td><td>Akk</td></tr><tr><td><strong>legen</strong></td><td>put</td><td>lege</td><td>legst</td><td>legt</td><td>legen</td><td>legt</td><td>legen</td><td>Akk</td></tr><tr><td><strong>rufen</strong></td><td>call</td><td>rufe</td><td>rufst</td><td>ruft</td><td>rufen</td><td>ruft</td><td>rufen</td><td>Akk</td></tr><tr><td><strong>lassen</strong></td><td>let</td><td>lasse</td><td>lässt</td><td>lässt</td><td>lassen</td><td>lassen</td><td>lassen</td><td>Akk</td></tr><tr><td><strong>kombinieren</strong></td><td>combine</td><td>kombiniere</td><td>kombinierst</td><td>kombiniert</td><td>kombinieren</td><td>kombiniert</td><td>kombinieren</td><td>Akk</td></tr><tr><td><strong>verstauchen</strong></td><td>sprain</td><td>verstauche</td><td>verstauchst</td><td>verstaucht</td><td>verstauchen</td><td>verstaucht</td><td>verstauchen</td><td>sich+Akk</td></tr><tr><td><strong>verschieben</strong></td><td>postpone</td><td>verschiebe</td><td>verschiebst</td><td>verschiebt</td><td>verschieben</td><td>verschiebt</td><td>verschieben</td><td>Akk</td></tr><tr><td><strong>bekanntgeben</strong></td><td>announce</td><td>gebe bekannt</td><td>gibst bekannt</td><td>gibt bekannt</td><td>geben bekannt</td><td>gebt bekannt</td><td>geben bekannt</td><td>Akk</td></tr><tr><td><strong>rechnen</strong></td><td>expect</td><td>rechne</td><td>rechnest</td><td>rechnet</td><td>rechnen</td><td>rechnet</td><td>rechnen</td><td>mit+Dat</td></tr><tr><td><strong>gewinnen</strong></td><td>win</td><td>gewinne</td><td>gewinnst</td><td>gewinnt</td><td>gewinnen</td><td>gewinnt</td><td>gewinnen</td><td>Akk</td></tr><tr><td><strong>umtauschen</strong></td><td>exchange</td><td>tausche um</td><td>tauschst um</td><td>tauscht um</td><td>tauschen um</td><td>tauscht um</td><td>tauschen um</td><td>Akk</td></tr><tr><td><strong>entfallen</strong></td><td>be cancelled/omitted</td><td>entfalle</td><td>entfällst</td><td>entfällt</td><td>entfallen</td><td>entfallt</td><td>entfallen</td><td>—</td></tr><tr><td><strong>bewerben</strong></td><td>apply</td><td>bewerbe</td><td>bewirbst</td><td>bewirbt</td><td>bewerben</td><td>bewerbt</td><td>bewerben</td><td>sich+bei+Dat</td></tr><tr><td><strong>einspringen</strong></td><td>step in</td><td>springe ein</td><td>springst ein</td><td>springt ein</td><td>springen ein</td><td>springt ein</td><td>springen ein</td><td>für+Akk</td></tr><tr><td><strong>bemerken</strong></td><td>notice</td><td>bemerke</td><td>bemerkst</td><td>bemerkt</td><td>bemerken</td><td>bemerkt</td><td>bemerken</td><td>Akk</td></tr><tr><td><strong>erbrechen</strong></td><td>vomit</td><td>erbreche</td><td>erbrichst</td><td>erbricht</td><td>erbrechen</td><td>erbrecht</td><td>erbrechen</td><td>sich</td></tr><tr><td><strong>einschieben</strong></td><td>squeeze in</td><td>schiebe ein</td><td>schiebst ein</td><td>schiebt ein</td><td>schieben ein</td><td>schiebt ein</td><td>schieben ein</td><td>Akk</td></tr><tr><td><strong>verreisen</strong></td><td>go on a trip</td><td>verreise</td><td>verreist</td><td>verreist</td><td>verreisen</td><td>verreist</td><td>verreisen</td><td>—</td></tr><tr><td><strong>erstatten</strong></td><td>refund</td><td>erstatte</td><td>erstattest</td><td>erstattet</td><td>erstatten</td><td>erstattet</td><td>erstatten</td><td>Akk</td></tr><tr><td><strong>verzichten</strong></td><td>do without</td><td>verzichte</td><td>verzichtest</td><td>verzichtet</td><td>verzichten</td><td>verzichtet</td><td>verzichten</td><td>auf+Akk</td></tr><tr><td><strong>aufpassen</strong></td><td>watch out</td><td>passe auf</td><td>passt auf</td><td>passt auf</td><td>passen auf</td><td>passt auf</td><td>passen auf</td><td>auf+Akk</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <footer>
+        <p>Erstellt für DTZ B1 Prüfungsvorbereitung. Mobile-optimiert & Sortierbar.</p>
+        <p><a href="#wordsTable">↑ Zu Wörtern</a> | <a href="#verbsTable">↑ Zu Verben</a> | <a href="#top">↑ Nach oben</a></p>
+        <small>Update Jan 2026 | advaitkhare-main | <a href="https://github.com/advaitkhare-main/dtz-b1" target="_blank">GitHub</a></small>
+    </footer>
+
+    <script>
+        // Set dark mode as default
+        if (!localStorage.getItem('theme')) {
+            document.body.dataset.theme = 'dark';
+            localStorage.setItem('theme', 'dark');
+        } else if (localStorage.getItem('theme') === 'dark') {
+            document.body.dataset.theme = 'dark';
+        } else {
+            document.body.dataset.theme = 'light';
+        }
+
+        // Dark Mode Toggle
+        function toggleTheme() {
+            document.body.dataset.theme = document.body.dataset.theme === 'dark' ? 'light' : 'dark';
+            localStorage.setItem('theme', document.body.dataset.theme);
+        }
+
+        // Live Search - Words and Verbs
+        document.getElementById('searchBox').addEventListener('input', function() {
+            let query = this.value.toLowerCase();
+            let wordRows = document.querySelectorAll('#wordsTableBody tr');
+            let verbRows = document.querySelectorAll('#verbsTableBody tr');
+
+            wordRows.forEach(row => {
+                row.style.display = row.textContent.toLowerCase().includes(query) ? '' : 'none';
+            });
+
+            verbRows.forEach(row => {
+                row.style.display = row.textContent.toLowerCase().includes(query) ? '' : 'none';
+            });
+        });
+
+        // Smooth scroll for TOC links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Table Sorting Function
+        function sortTable(tableId, columnIndex) {
+            const table = document.getElementById(tableId);
+            const tbody = table.querySelector('tbody');
+            const rows = Array.from(tbody.querySelectorAll('tr'));
+
+            // Determine sort direction
+            const currentDir = table.dataset.sortDir || 'asc';
+            const newDir = currentDir === 'asc' ? 'desc' : 'asc';
+            table.dataset.sortDir = newDir;
+
+            // Sort rows
+            rows.sort((a, b) => {
+                const aText = a.cells[columnIndex].textContent.trim().toLowerCase();
+                const bText = b.cells[columnIndex].textContent.trim().toLowerCase();
+
+                if (newDir === 'asc') {
+                    return aText.localeCompare(bText, 'de');
+                } else {
+                    return bText.localeCompare(aText, 'de');
+                }
+            });
+
+            // Re-append sorted rows
+            rows.forEach(row => tbody.appendChild(row));
+        }
+    </script>
+</body>
+</html>
